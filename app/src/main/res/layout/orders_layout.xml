@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimaryDark"
+        >
+        <TextView
+            android:id="@+id/tablenumber_admin"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="TableNumber"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/totalprice_admin"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="5dp"
+            android:text="Total Price"
+            android:textAlignment="viewEnd"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:layout_marginRight="5dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/datetime_admin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date  Time"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/totalprice_admin"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            />
+
+        <Button
+            android:id="@+id/show_all_products"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/datetime_admin"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/white"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="View Order"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

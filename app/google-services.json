@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "4418728047",
+    "firebase_url": "https://crookedinn-5d96b.firebaseio.com",
+    "project_id": "crookedinn-5d96b",
+    "storage_bucket": "crookedinn-5d96b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4418728047:android:595070a2cc5503340b9d9a",
+        "android_client_info": {
+          "package_name": "com.example.crookedinn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "4418728047-hjr9ovnhdl222p0re8sbs214qpl5ls6n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.crookedinn",
+            "certificate_hash": "0180a53ff492f380ca4a21470849a4a502ff4281"
+          }
+        },
+        {
+          "client_id": "4418728047-hpo7bbqga65ihu4i3iouvot0ipt4mnpv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-tcL34sfwcgyr1F4DwM84qbKkKZ1NeH4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4418728047-hpo7bbqga65ihu4i3iouvot0ipt4mnpv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

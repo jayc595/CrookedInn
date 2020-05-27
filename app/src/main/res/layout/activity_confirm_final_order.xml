@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ConfirmFinalOrder">
+
+    <TextView
+        android:id="@+id/txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please Confirm Order"
+        android:background="@color/colorPrimaryDark"
+        android:textSize="18dp"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        android:layout_margin="15dp"
+        android:textStyle="bold"
+        />
+
+
+    
+    <TextView
+        android:id="@+id/table_number_final"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt"
+        android:text="Your Table Number is:"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_margin="15dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/total_price_final"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/table_number_final"
+        android:text="Total Price is:"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_margin="15dp"
+        android:gravity="center"
+        />
+
+    <EditText
+        android:id="@+id/additional_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/cart_next"
+        android:hint="Additional Notes"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_below="@+id/total_price_final"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:text="Please include any allergy information within the additional notes"
+        android:layout_below="@+id/additional_notes"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:layout_margin="10dp"/>
+
+    <Button
+        android:id="@+id/proceed_to_payment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimaryDark"
+        android:text="Proceed to Payment"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:layout_margin="10dp"/>
+</RelativeLayout>

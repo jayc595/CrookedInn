@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="20dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    app:cardElevation="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linear1_category_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_marginTop="5dp">
+
+
+            <ImageView
+                android:id="@+id/starters"
+                android:layout_width="400dp"
+                android:layout_height="65dp"
+                android:src="@drawable/startersicon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear2_category_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear1_category_layout"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_marginTop="6dp">
+            <ImageView
+                android:id="@+id/lunch"
+                android:layout_width="400dp"
+                android:layout_height="65dp"
+                android:src="@drawable/lunchicon" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear3_category_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear2_category_layout"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_marginTop="6dp">
+
+            <ImageView
+                android:id="@+id/grill"
+                android:layout_width="400dp"
+                android:layout_height="65dp"
+                android:src="@drawable/grillicon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear4_category_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear3_category_layout"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_marginTop="6dp">
+
+            <ImageView
+                android:id="@+id/pasta"
+                android:layout_width="400dp"
+                android:layout_height="65dp"
+                android:src="@drawable/pastaicon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear5_category_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear4_category_layout"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_marginTop="6dp">
+
+            <ImageView
+                android:id="@+id/specials"
+                android:layout_width="400dp"
+                android:layout_height="65dp"
+                android:src="@drawable/specialsicon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear6_category_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear5_category_layout"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_marginTop="6dp">
+
+            <ImageView
+                android:id="@+id/vegetarian"
+                android:layout_width="400dp"
+                android:layout_height="65dp"
+                android:src="@drawable/vegeterianicon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear7_category_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear6_category_layout"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_marginTop="6dp">
+
+            <ImageView
+                android:id="@+id/sides"
+                android:layout_width="400dp"
+                android:layout_height="65dp"
+                android:src="@drawable/sidesicon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear8_category_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear7_category_layout"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_marginTop="6dp">
+
+            <ImageView
+                android:id="@+id/dessert"
+                android:layout_width="400dp"
+                android:layout_height="65dp"
+                android:src="@drawable/desserticon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear9_category_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear8_category_layout"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_marginTop="6dp">
+
+            <ImageView
+                android:id="@+id/drinks"
+                android:layout_width="400dp"
+                android:layout_height="65dp"
+                android:src="@drawable/drinkicon" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

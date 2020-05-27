@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/main_rl"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminCategory"
+    android:layout_above="@+id/secondary_rl">
+
+    <Button
+        android:id="@+id/check_new_orders"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="29dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@android:color/white"
+        android:text="Check New Orders"
+        android:textSize="18dp">
+    </Button>
+
+    <Button
+        android:id="@+id/logout_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginRight="29dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/check_new_orders"
+        android:text="Logout"
+        android:textSize="18dp"
+        >
+    </Button>
+    
+    <TextView
+        android:id="@+id/slogan_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Add New Product"
+        android:layout_below="@+id/logout_btn"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        />
+
+    <LinearLayout
+        android:id="@+id/linear1_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/slogan_category"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="10dp">
+
+
+        <ImageView
+            android:id="@+id/starters"
+            android:layout_width="400dp"
+            android:layout_height="65dp"
+            android:src="@drawable/startersicon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear2_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear1_category_layout"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="6dp">
+       <ImageView
+            android:id="@+id/lunch"
+           android:layout_width="400dp"
+           android:layout_height="65dp"
+           android:src="@drawable/lunchicon" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear3_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear2_category_layout"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="6dp">
+
+        <ImageView
+            android:id="@+id/grill"
+            android:layout_width="400dp"
+            android:layout_height="65dp"
+            android:src="@drawable/grillicon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear4_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear3_category_layout"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="6dp">
+
+        <ImageView
+            android:id="@+id/pasta"
+            android:layout_width="400dp"
+            android:layout_height="65dp"
+            android:src="@drawable/pastaicon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear5_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear4_category_layout"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="6dp">
+
+        <ImageView
+            android:id="@+id/specials"
+            android:layout_width="400dp"
+            android:layout_height="65dp"
+            android:src="@drawable/specialsicon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear6_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear5_category_layout"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="6dp">
+
+        <ImageView
+            android:id="@+id/vegetarian"
+            android:layout_width="400dp"
+            android:layout_height="65dp"
+            android:src="@drawable/vegeterianicon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear7_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear6_category_layout"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="6dp">
+
+        <ImageView
+            android:id="@+id/sides"
+            android:layout_width="400dp"
+            android:layout_height="65dp"
+            android:src="@drawable/sidesicon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear8_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear7_category_layout"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="6dp">
+
+        <ImageView
+            android:id="@+id/dessert"
+            android:layout_width="400dp"
+            android:layout_height="65dp"
+            android:src="@drawable/desserticon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear9_category_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear8_category_layout"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="6dp">
+
+        <ImageView
+            android:id="@+id/drinks"
+            android:layout_width="400dp"
+            android:layout_height="65dp"
+            android:src="@drawable/drinkicon" />
+    </LinearLayout>
+        
+<!--    <LinearLayout-->
+<!--        android:id="@+id/secondary_rl"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:background="@drawable/stroke2"-->
+<!--        android:orientation="horizontal">-->
+
+<!--      -->
+<!--    </LinearLayout>-->
+
+</RelativeLayout>
