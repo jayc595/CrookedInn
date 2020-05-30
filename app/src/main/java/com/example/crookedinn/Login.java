@@ -146,7 +146,7 @@ public class Login extends AppCompatActivity {
                     }
                 }
                 else {
-                    Toast.makeText(Login.this, "Account with the number:" + phone + "does not exist", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Account with the number: " + phone + " does not exist", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                 }
             }
