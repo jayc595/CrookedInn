@@ -49,11 +49,25 @@
             android:layout_marginTop="10dp"
             />
 
+        <TextView
+            android:id="@+id/description_admin_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date  Time"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/datetime_admin"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            />
+
         <Button
             android:id="@+id/show_all_products"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/datetime_admin"
+            android:layout_below="@+id/description_admin_order"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="5dp"

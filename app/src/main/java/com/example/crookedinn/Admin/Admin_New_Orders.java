@@ -49,6 +49,7 @@ public class Admin_New_Orders extends AppCompatActivity {
                 holder.TotalPrice.setText("Price: " + model.getTotalAmount());
                 holder.TableNumber.setText("Table Number: " + model.getTableNumber());
                 holder.DateTime.setText("Ordered at: " + model.getTime() + "   " + model.getDate());
+                holder.Description.setText("Notes:" + model.getNotes());
 
                 holder.ShowAllProd.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -102,7 +103,7 @@ public class Admin_New_Orders extends AppCompatActivity {
     }
     public static class AdminOrdersViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView TableNumber, TotalPrice, DateTime;
+        public TextView TableNumber, TotalPrice, DateTime, Description;
         public Button ShowAllProd;
 
 
@@ -113,6 +114,7 @@ public class Admin_New_Orders extends AppCompatActivity {
             TableNumber = itemView.findViewById(R.id.tablenumber_admin);
             TotalPrice = itemView.findViewById(R.id.totalprice_admin);
             DateTime = itemView.findViewById(R.id.datetime_admin);
+            Description = itemView.findViewById(R.id.description_admin_order); //description
             ShowAllProd = itemView.findViewById(R.id.show_all_products);
 
         }

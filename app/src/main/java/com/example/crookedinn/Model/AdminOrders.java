@@ -1,7 +1,7 @@
 package com.example.crookedinn.Model;
 
 public class AdminOrders {
-    private String date, notes, state, tableNumber, time, totalAmount, phone;
+    private String date, notes, state, tableNumber, time, totalAmount, phone, description;
 
     public AdminOrders() {
     }
@@ -71,4 +71,6 @@ public class AdminOrders {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+
 }

@@ -20,15 +20,18 @@
 
             <TextView
                 android:id="@+id/toolbar_name_layout"
-                android:layout_width="match_parent"
+                android:layout_width="400px"
                 android:layout_height="wrap_content"
                 android:text="Admin Home"
                 android:textSize="20sp"
                 android:textStyle="bold"
+
+
                 android:textColor="@android:color/white"
-                android:layout_marginRight="40dp"
-                android:gravity="center"
-                ></TextView>
+
+                android:gravity="center">
+
+            </TextView>
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>

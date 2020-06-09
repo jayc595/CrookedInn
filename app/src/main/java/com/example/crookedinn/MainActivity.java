@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                             loadingBar.dismiss();
                             Intent intent = new Intent(MainActivity.this, Home.class);
                             intent.putExtra("category", "none");
+                            intent.putExtra("Admin", "User");
                             Prevalant.currentOnlineUser = usersData;
                             startActivity(intent);
                         }

@@ -55,7 +55,6 @@ public class AdminCategory extends AppCompatActivity {
                 Intent intent = new Intent(AdminCategory.this, Home.class);
                 intent.putExtra("category", "none");
                 intent.putExtra("Admin", "Admin");
-                Toast.makeText(AdminCategory.this, "MAINTAIN PRODUCTS WORKED", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });

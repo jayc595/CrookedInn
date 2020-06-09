@@ -58,6 +58,7 @@ public class ResetPassword extends AppCompatActivity {
             title.setText("Set Questions");
             questionTitle.setText("Please set answers for the following Security Questions");
             verifyBtn.setText("Apply Answers");
+            displayPreviousAnswers();
 
             verifyBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
