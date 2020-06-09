@@ -281,7 +281,7 @@ public class CartActivity extends AppCompatActivity {
                                         if (task.isSuccessful()) {
                                             Toast.makeText(CartActivity.this, "Item has been removed", Toast.LENGTH_SHORT).show();
 
-                                            Intent intent = new Intent(CartActivity.this, CartActivity.class);
+                                            Intent intent = new Intent(CartActivity.this, Home.class);
                                             startActivity(intent);
                                         }
                                     }
@@ -354,11 +354,4 @@ public class CartActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(CartActivity.this, Home.class);
-        intent.putExtra("category", "none");
-        startActivity(intent);
-//        super.onBackPressed();
-    }
 }

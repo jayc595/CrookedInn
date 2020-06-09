@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.crookedinn.Model.Products;
+import com.example.crookedinn.AdminMaintainActivity;
 import com.example.crookedinn.Prevalant.Prevalant;
 import com.example.crookedinn.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -51,11 +52,25 @@ public class Home extends AppCompatActivity
     private String GetName, Order = "";
     private TextView toolbarName;
 
+    private String type = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        type = getIntent().getExtras().get("Admin").toString();
+
+        if(type.equals("Admin")) {
+            Toast.makeText(this, "Admin Active", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "User?", Toast.LENGTH_SHORT).show();
+        }
+
+
+
+
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
         toolbarName = (TextView) findViewById(R.id.toolbar_name_layout);
 
@@ -89,10 +104,12 @@ public class Home extends AppCompatActivity
         TextView userNameTextView = headerView.findViewById(R.id.user_profile_name);
         CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
 
+        if (!type.equals("Admin")) {
+            userNameTextView.setText(Prevalant.currentOnlineUser.getName());
+            Picasso.get().load(Prevalant.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
+        }
 
 
-        userNameTextView.setText(Prevalant.currentOnlineUser.getName());
-        Picasso.get().load(Prevalant.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
 
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
@@ -108,44 +125,54 @@ public class Home extends AppCompatActivity
         Order = getIntent().getStringExtra("category");
         if (Order.equals("starters") || Order.equals("grill") || Order.equals("specials") || Order.equals("sides") || Order.equals("lunch")) {
             toolbarName.setText(Order);
-            FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(ProductsRef.orderByChild("category").startAt(Order).endAt(Order), Products.class).build();
-            FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
-                @Override
-                protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                    if (model.getStock().equals("Yes") || model.getStock().equals("NA")) {
-                        holder.txtItemName.setVisibility(View.VISIBLE);
-                        holder.txtItemPrice.setVisibility(View.VISIBLE);
-                        holder.txtItemCategory.setVisibility(View.VISIBLE);
-                        holder.itemView.setVisibility(View.VISIBLE);
+        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(ProductsRef.orderByChild("category").startAt(Order).endAt(Order), Products.class).build();
+        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
+                if (model.getStock().equals("Yes") || model.getStock().equals("NA")) {
+                    holder.txtItemName.setVisibility(View.VISIBLE);
+                    holder.txtItemPrice.setVisibility(View.VISIBLE);
+                    holder.txtItemCategory.setVisibility(View.VISIBLE);
+                    holder.itemView.setVisibility(View.VISIBLE);
 
-                        holder.txtItemName.setText(model.getIname());
-                        holder.txtItemPrice.setText(model.getPrice());
-                        holder.txtItemCategory.setText(model.getCategory());
+                    holder.txtItemName.setText(model.getIname());
+                    holder.txtItemPrice.setText(model.getPrice());
+                    holder.txtItemCategory.setText(model.getCategory());
 
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
+
+                    holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if (type.equals("Admin")) {
+                                Intent intent = new Intent(Home.this, AdminMaintainActivity.class);
+                                intent.putExtra("pid", model.getPid());
+                                startActivity(intent);
+
+                            } else {
                                 Intent intent = new Intent(Home.this, ItemDetails.class);
                                 intent.putExtra("pid", model.getPid());
                                 startActivity(intent);
                             }
-                        });
-                    } else {
-                        holder.Layout_view.setVisibility(View.GONE);
 
-                    }
-                }
 
-                @NonNull
-                @Override
-                public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.all_products_layout, parent, false);
-                    ProductViewHolder holder = new ProductViewHolder(view);
-                    return holder;
+                        }
+                    });
+                } else {
+                    holder.Layout_view.setVisibility(View.GONE);
+
                 }
-            };
-            recyclerView.setAdapter(adapter);
-            adapter.startListening();
+            }
+
+            @NonNull
+            @Override
+            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.all_products_layout, parent, false);
+                ProductViewHolder holder = new ProductViewHolder(view);
+                return holder;
+            }
+        };
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
         }
 
 
@@ -154,6 +181,7 @@ public class Home extends AppCompatActivity
             FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                 @Override
                 protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
+                    
                     if (model.getStock().equals("Yes") || model.getStock().equals("NA")) {
                         holder.txtItemName.setVisibility(View.VISIBLE);
                         holder.txtItemPrice.setVisibility(View.VISIBLE);
@@ -167,9 +195,16 @@ public class Home extends AppCompatActivity
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Intent intent = new Intent(Home.this, ItemDetails.class);
-                                intent.putExtra("pid", model.getPid());
-                                startActivity(intent);
+                                if (type.equals("Admin")) {
+                                    Intent intent = new Intent(Home.this, AdminMaintainActivity.class);
+                                    intent.putExtra("pid", model.getPid());
+                                    startActivity(intent);
+
+                                } else {
+                                    Intent intent = new Intent(Home.this, ItemDetails.class);
+                                    intent.putExtra("pid", model.getPid());
+                                    startActivity(intent);
+                                }
                             }
                         });
                     } else {

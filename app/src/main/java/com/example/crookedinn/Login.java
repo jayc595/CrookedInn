@@ -127,7 +127,7 @@ public class Login extends AppCompatActivity {
                             if (parentDbName.equals("Admins")) {
                                 Toast.makeText(Login.this, "Welcome Admin, Login Successful!", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
-                                Intent intent = new Intent(Login.this, AdminHome.class);
+                                Intent intent = new Intent(Login.this, AdminCategory.class);
                                 startActivity(intent);
                             }
                             else if (parentDbName.equals("Users")) {
@@ -135,6 +135,7 @@ public class Login extends AppCompatActivity {
                                 loadingBar.dismiss();
                                 Intent intent = new Intent(Login.this, Home.class);
                                 intent.putExtra("category", "none");
+                                intent.putExtra("Admin", "User");
                                 Prevalant.currentOnlineUser = usersData;
                                 startActivity(intent);
                             }

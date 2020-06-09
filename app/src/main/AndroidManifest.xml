@@ -12,10 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AdminMaintainActivity"></activity>
         <activity
             android:name=".AdminHome"
             android:label="@string/title_activity_admin_home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".UserCategoryItems" />
         <activity android:name=".Search" />
         <activity android:name=".AdminUserProducts" />

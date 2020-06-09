@@ -61,26 +61,11 @@
         android:layout_marginRight="50dp"
         android:background="@drawable/input_design"
         />
-
-    <Button
-        android:id="@+id/add_new_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/item_price"
-        android:text="Add Item"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:textSize="18sp"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:background="@drawable/buttons"
-        />
     <com.rey.material.widget.CheckBox
         android:id="@+id/glutenfree_chkb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/add_new_item"
+        android:layout_below="@+id/item_price"
         style="@style/Material.Drawable.CheckBox"
         android:text="Gluten Free?"
         android:textColor="@color/colorPrimaryDark"
@@ -123,5 +108,22 @@
         android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true"
         />
+
+    <Button
+        android:id="@+id/add_new_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/outofstock_chkbx"
+        android:text="Add Item"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:background="@drawable/buttons"
+        />
+
+
 
 </RelativeLayout>

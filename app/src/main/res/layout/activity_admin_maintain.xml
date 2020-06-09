@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    app:cardElevation="15dp"
+    tools:context=".AdminMaintainActivity">
+
+    <RelativeLayout
+        android:id="@+id/layout_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/categorynamelayout_maintain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Category Name"
+            android:textAllCaps="true"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray">
+        </TextView>
+
+        <EditText
+            android:id="@+id/item_name_layout_maintain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/categorynamelayout_maintain"
+            android:hint="Item Name"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:padding="12dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/input_design"
+            android:gravity="center"
+            />
+
+
+        <EditText
+            android:id="@+id/item_price_layout_maintain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Product Price"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:padding="12dp"
+            android:layout_margin="5dp"
+            android:layout_below="@+id/item_name_layout_maintain"
+            android:background="@drawable/input_design"
+            android:gravity="center"
+            />
+
+        <EditText
+            android:id="@+id/product_description_maintain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_price_layout_maintain"
+            android:hint="Product Description"
+            android:background="@drawable/input_design"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:padding="12dp"
+            android:layout_margin="5dp"
+            />
+
+        <com.rey.material.widget.CheckBox
+            android:id="@+id/gluten_free_chkb_maintain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/product_description_maintain"
+            style="@style/Material.Drawable.CheckBox"
+            android:text="Gluten Free?"
+            android:textColor="@color/colorPrimaryDark"
+            app:cbd_strokeColor="@color/colorPrimaryDark"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <com.rey.material.widget.CheckBox
+            android:id="@+id/dairyfree_chkb_maintain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gluten_free_chkb_maintain"
+            style="@style/Material.Drawable.CheckBox"
+            android:text="Dairy Free?"
+            android:textColor="@color/colorPrimaryDark"
+            app:cbd_strokeColor="@color/colorPrimaryDark"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <com.rey.material.widget.CheckBox
+            android:id="@+id/outofstock_chkbx_maintain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dairyfree_chkb_maintain"
+            style="@style/Material.Drawable.CheckBox"
+            android:text="Out Of Stock?"
+            android:textColor="@color/colorPrimaryDark"
+            app:cbd_strokeColor="@color/colorPrimaryDark"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <Button
+            android:id="@+id/apply_changes_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/outofstock_chkbx_maintain"
+            android:text="Apply Changes"
+            android:background="@drawable/buttons"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:padding="12dp"
+            android:layout_margin="30dp"
+
+            />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

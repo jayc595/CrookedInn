@@ -10,7 +10,21 @@
     android:layout_above="@+id/secondary_rl">
 
     <Button
-        android:id="@+id/check_new_orders"
+    android:id="@+id/check_new_orders"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="29dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginBottom="5dp"
+    android:background="@color/colorPrimaryDark"
+    android:textColor="@android:color/white"
+    android:text="Check New Orders"
+    android:textSize="18dp">
+    </Button>
+
+    <Button
+        android:id="@+id/maintain_products"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="5dp"
@@ -19,7 +33,8 @@
         android:layout_marginBottom="5dp"
         android:background="@color/colorPrimaryDark"
         android:textColor="@android:color/white"
-        android:text="Check New Orders"
+        android:layout_below="@+id/check_new_orders"
+        android:text="Maintain Products"
         android:textSize="18dp">
     </Button>
 
@@ -32,7 +47,7 @@
         android:layout_marginBottom="5dp"
         android:background="@color/colorPrimaryDark"
         android:textColor="@android:color/white"
-        android:layout_below="@+id/check_new_orders"
+        android:layout_below="@+id/maintain_products"
         android:text="Logout"
         android:textSize="18dp"
         >
@@ -64,7 +79,7 @@
         <ImageView
             android:id="@+id/starters"
             android:layout_width="400dp"
-            android:layout_height="65dp"
+            android:layout_height="50dp"
             android:src="@drawable/startersicon" />
     </LinearLayout>
 
@@ -80,7 +95,7 @@
        <ImageView
             android:id="@+id/lunch"
            android:layout_width="400dp"
-           android:layout_height="65dp"
+           android:layout_height="50dp"
            android:src="@drawable/lunchicon" />
 
     </LinearLayout>
@@ -98,7 +113,7 @@
         <ImageView
             android:id="@+id/grill"
             android:layout_width="400dp"
-            android:layout_height="65dp"
+            android:layout_height="50dp"
             android:src="@drawable/grillicon" />
     </LinearLayout>
 
@@ -115,7 +130,7 @@
         <ImageView
             android:id="@+id/pasta"
             android:layout_width="400dp"
-            android:layout_height="65dp"
+            android:layout_height="50dp"
             android:src="@drawable/pastaicon" />
     </LinearLayout>
 
@@ -132,7 +147,7 @@
         <ImageView
             android:id="@+id/specials"
             android:layout_width="400dp"
-            android:layout_height="65dp"
+            android:layout_height="50dp"
             android:src="@drawable/specialsicon" />
     </LinearLayout>
 
@@ -149,7 +164,7 @@
         <ImageView
             android:id="@+id/vegetarian"
             android:layout_width="400dp"
-            android:layout_height="65dp"
+            android:layout_height="50dp"
             android:src="@drawable/vegeterianicon" />
     </LinearLayout>
 
@@ -166,7 +181,7 @@
         <ImageView
             android:id="@+id/sides"
             android:layout_width="400dp"
-            android:layout_height="65dp"
+            android:layout_height="50dp"
             android:src="@drawable/sidesicon" />
     </LinearLayout>
 
@@ -183,7 +198,7 @@
         <ImageView
             android:id="@+id/dessert"
             android:layout_width="400dp"
-            android:layout_height="65dp"
+            android:layout_height="50dp"
             android:src="@drawable/desserticon" />
     </LinearLayout>
 
@@ -200,7 +215,7 @@
         <ImageView
             android:id="@+id/drinks"
             android:layout_width="400dp"
-            android:layout_height="65dp"
+            android:layout_height="50dp"
             android:src="@drawable/drinkicon" />
     </LinearLayout>
         

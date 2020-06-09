@@ -14,7 +14,7 @@ public class AdminCategory extends AppCompatActivity {
     private ImageView grill, specials, vegetarian, pasta;
     private ImageView sides, dessert, drinks;
 
-    private Button LogoutBtn, CheckOrderBtn;
+    private Button LogoutBtn, CheckOrderBtn, MaintainProducts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,7 @@ public class AdminCategory extends AppCompatActivity {
 
         LogoutBtn = (Button) findViewById(R.id.logout_btn);
         CheckOrderBtn = (Button) findViewById(R.id.check_new_orders);
+        MaintainProducts = (Button) findViewById(R.id.maintain_products);
 
         LogoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +40,17 @@ public class AdminCategory extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AdminCategory.this, Admin_New_Orders.class);
+                startActivity(intent);
+            }
+        });
+
+        MaintainProducts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminCategory.this, Home.class);
+                intent.putExtra("category", "none");
+                intent.putExtra("Admin", "Admin");
+                Toast.makeText(AdminCategory.this, "MAINTAIN PRODUCTS WORKED", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });

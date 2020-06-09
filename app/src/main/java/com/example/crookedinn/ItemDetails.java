@@ -71,7 +71,7 @@ public class ItemDetails extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        CheckOrderState();
+//        CheckOrderState(); //undo this later
     }
 
     private void addingToCartList() {
