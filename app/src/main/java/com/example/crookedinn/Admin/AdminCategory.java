@@ -1,4 +1,4 @@
-package com.example.crookedinn;
+package com.example.crookedinn.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.example.crookedinn.DrinksAddItem;
+import com.example.crookedinn.Home;
+import com.example.crookedinn.MainActivity;
+import com.example.crookedinn.R;
 
 public class AdminCategory extends AppCompatActivity {
     private ImageView starters, lunch;

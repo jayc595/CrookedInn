@@ -1,4 +1,4 @@
-package com.example.crookedinn;
+package com.example.crookedinn.Admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.crookedinn.Model.Cart;
+import com.example.crookedinn.R;
 import com.example.crookedinn.ViewHolder.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;

@@ -103,4 +103,17 @@
         android:layout_margin="15dp">
 
     </EditText>
+
+    <Button
+        android:id="@+id/security_questions_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/settings_password"
+        android:text="Set Security Questions"
+        android:textColor="@android:color/white"
+        android:layout_margin="15dp"
+        android:background="@drawable/buttons">
+
+
+    </Button>
 </RelativeLayout>

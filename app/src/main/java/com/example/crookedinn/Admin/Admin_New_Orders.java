@@ -1,4 +1,4 @@
-package com.example.crookedinn;
+package com.example.crookedinn.Admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.crookedinn.Model.AdminOrders;
+import com.example.crookedinn.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;

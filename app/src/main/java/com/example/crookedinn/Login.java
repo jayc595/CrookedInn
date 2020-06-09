@@ -6,10 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.service.autofill.UserData;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.crookedinn.Admin.AdminCategory;
 import com.rey.material.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -56,6 +57,15 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 LoginUser();
+            }
+        });
+
+        ForgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Login.this, ResetPassword.class);
+                intent.putExtra("check", "login");
+                startActivity(intent);
             }
         });
 

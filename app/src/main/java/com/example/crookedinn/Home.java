@@ -11,13 +11,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.crookedinn.Model.Products;
-import com.example.crookedinn.AdminMaintainActivity;
+import com.example.crookedinn.Admin.AdminMaintainActivity;
 import com.example.crookedinn.Prevalant.Prevalant;
 import com.example.crookedinn.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -26,10 +25,7 @@ import com.squareup.picasso.Picasso;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -62,15 +58,6 @@ public class Home extends AppCompatActivity
 
         type = getIntent().getExtras().get("Admin").toString();
 
-        if(type.equals("Admin")) {
-            Toast.makeText(this, "Admin Active", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "User?", Toast.LENGTH_SHORT).show();
-        }
-
-
-
-
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
         toolbarName = (TextView) findViewById(R.id.toolbar_name_layout);
 
@@ -86,8 +73,9 @@ public class Home extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Home.this, CartActivity.class);
-                startActivity(intent);
+                    Intent intent = new Intent(Home.this, CartActivity.class);
+                    startActivity(intent);
+
             }
         });
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -103,6 +91,10 @@ public class Home extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         TextView userNameTextView = headerView.findViewById(R.id.user_profile_name);
         CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
+
+        if(type.equals("Admin")){
+            fab.setVisibility(View.GONE);
+        }
 
         if (!type.equals("Admin")) {
             userNameTextView.setText(Prevalant.currentOnlineUser.getName());
@@ -143,16 +135,10 @@ public class Home extends AppCompatActivity
                     holder.itemView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if (type.equals("Admin")) {
-                                Intent intent = new Intent(Home.this, AdminMaintainActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                startActivity(intent);
-
-                            } else {
                                 Intent intent = new Intent(Home.this, ItemDetails.class);
                                 intent.putExtra("pid", model.getPid());
                                 startActivity(intent);
-                            }
+
 
 
                         }
@@ -181,8 +167,7 @@ public class Home extends AppCompatActivity
             FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                 @Override
                 protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
-                    
-                    if (model.getStock().equals("Yes") || model.getStock().equals("NA")) {
+                    if (type.equals("Admin")) {
                         holder.txtItemName.setVisibility(View.VISIBLE);
                         holder.txtItemPrice.setVisibility(View.VISIBLE);
                         holder.txtItemCategory.setVisibility(View.VISIBLE);
@@ -195,21 +180,36 @@ public class Home extends AppCompatActivity
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                if (type.equals("Admin")) {
                                     Intent intent = new Intent(Home.this, AdminMaintainActivity.class);
                                     intent.putExtra("pid", model.getPid());
                                     startActivity(intent);
-
-                                } else {
-                                    Intent intent = new Intent(Home.this, ItemDetails.class);
-                                    intent.putExtra("pid", model.getPid());
-                                    startActivity(intent);
-                                }
                             }
                         });
-                    } else {
-                        holder.Layout_view.setVisibility(View.GONE);
+                    }
+                     else {
+                        if (model.getStock().equals("Yes") || model.getStock().equals("NA")) {
+                            holder.txtItemName.setVisibility(View.VISIBLE);
+                            holder.txtItemPrice.setVisibility(View.VISIBLE);
+                            holder.txtItemCategory.setVisibility(View.VISIBLE);
+                            holder.itemView.setVisibility(View.VISIBLE);
 
+                            holder.txtItemName.setText(model.getIname());
+                            holder.txtItemPrice.setText(model.getPrice());
+                            holder.txtItemCategory.setText(model.getCategory());
+
+                            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                        Intent intent = new Intent(Home.this, ItemDetails.class);
+                                        intent.putExtra("pid", model.getPid());
+                                        startActivity(intent);
+
+                                }
+                            });
+                        } else {
+                            holder.Layout_view.setVisibility(View.GONE);
+
+                        }
                     }
                 }
 
@@ -261,17 +261,37 @@ public class Home extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_cart) {
-            Intent intent = new Intent(Home.this, CartActivity.class);
-            startActivity(intent);
+            if(!type.equals("Admin")){
+                Intent intent = new Intent(Home.this, CartActivity.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "You don't have permission", Toast.LENGTH_SHORT).show();
+
+            }
+
         } else if (id == R.id.nav_search) {
-            Intent intent = new Intent(Home.this, Search.class);
-            startActivity(intent);
+            if(!type.equals("Admin")){
+                Intent intent = new Intent(Home.this, Search.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "You don't have permission", Toast.LENGTH_SHORT).show();
+            }
+
         } else if (id == R.id.nav_categories) {
-            Intent intent = new Intent(Home.this, AllCategoriesUser.class);
-            startActivity(intent);
+            if(!type.equals("Admin")){
+                Intent intent = new Intent(Home.this, AllCategoriesUser.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "You don't have permission", Toast.LENGTH_SHORT).show();
+
+            }
         } else if (id == R.id.nav_settings) {
-            Intent intent = new Intent(Home.this, Settings.class);
-            startActivity(intent);
+            if(!type.equals("Admin")){
+                Intent intent = new Intent(Home.this, Settings.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "You don't have permission", Toast.LENGTH_SHORT).show();
+            }
 
         } else if (id == R.id.nav_logout) {
             Paper.book().destroy();

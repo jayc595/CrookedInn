@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.crookedinn.Admin.AdminAddNewItem;
+
 public class DrinksAddItem extends AppCompatActivity {
     private ImageView hotdrinks, softdrinks, wine, spirits, beer;
 

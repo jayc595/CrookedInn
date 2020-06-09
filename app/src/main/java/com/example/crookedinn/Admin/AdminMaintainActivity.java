@@ -1,8 +1,10 @@
-package com.example.crookedinn;
+package com.example.crookedinn.Admin;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.crookedinn.Home;
+import com.example.crookedinn.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -23,7 +27,7 @@ import com.rey.material.widget.CheckBox;
 import java.util.HashMap;
 
 public class AdminMaintainActivity extends AppCompatActivity {
-    private Button applyChangesBtn;
+    private Button applyChangesBtn, deleteBtn;
     private EditText itemName, itemPrice, itemDescription;
     private CheckBox GFchkbx, DFchkbx, outofStockchkbx;
     private TextView categoryName;
@@ -47,6 +51,7 @@ public class AdminMaintainActivity extends AppCompatActivity {
         DFchkbx = findViewById(R.id.dairyfree_chkb_maintain);
         outofStockchkbx = findViewById(R.id.outofstock_chkbx_maintain);
         categoryName = findViewById(R.id.categorynamelayout_maintain);
+        deleteBtn = findViewById(R.id.delete_button);
 
         displaySpecificInfo();
 
@@ -58,6 +63,42 @@ public class AdminMaintainActivity extends AppCompatActivity {
             
         });
 
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteItem();
+            }
+        });
+
+    }
+
+    private void deleteItem() {
+        CharSequence delete[] = new CharSequence[] {
+                "Yes",
+                "No"
+        };
+        AlertDialog.Builder builder = new AlertDialog.Builder(AdminMaintainActivity.this);
+        builder.setTitle("Are you sure you want to delete this item?");
+
+        builder.setItems(delete, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                if (i == 0) {
+                    productRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(AdminMaintainActivity.this, "Item deleted successfully", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(AdminMaintainActivity.this, Home.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
+                if (i == 1) {
+
+                }
+            }
+        });
+        builder.show();
     }
 
     private void applyChanges() {
@@ -136,8 +177,8 @@ public class AdminMaintainActivity extends AppCompatActivity {
                     if(DF.equals("Yes")){
                         DFchkbx.setChecked(true);
                     }
-                    if(outofStock.equals("Yes")){
-                        outofStockchkbx.setChecked(false);
+                    if(outofStock.equals("No")){
+                        outofStockchkbx.setChecked(true);
                     }
                     if(GF.equals("Yes")){
                         GFchkbx.setChecked(true);
