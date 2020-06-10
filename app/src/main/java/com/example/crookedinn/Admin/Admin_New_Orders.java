@@ -60,6 +60,7 @@ public class Admin_New_Orders extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -68,6 +69,7 @@ public class Admin_New_Orders extends AppCompatActivity {
                                         "Yes",
                                         "No"
                                 };
+
                         AlertDialog.Builder builder = new AlertDialog.Builder(Admin_New_Orders.this);
                         builder.setTitle("Order Complete?");
 

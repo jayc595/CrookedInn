@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.chivorn.smartmaterialspinner.SmartMaterialSpinner;
 import com.example.crookedinn.Model.Cart;
+import com.example.crookedinn.Model.Products;
 import com.example.crookedinn.Prevalant.Prevalant;
 import com.example.crookedinn.ViewHolder.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -33,12 +34,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 
@@ -50,8 +53,10 @@ public class CartActivity extends AppCompatActivity {
     private EditText AdditionalNotes;
     private RelativeLayout rl1;
 
-    private int overTotalPrice = 0;
-    private String TableNum = "0";
+    private double overTotalPrice = 0.0;
+    private double oneTyprProductTPrice = 0.0;
+    private String TableNum = "0", overTotalPrice1 = "";
+
 
 
     @Override
@@ -65,6 +70,8 @@ public class CartActivity extends AppCompatActivity {
 //        spinner.setOnItemSelectedListener(this);
 
         setContentView(R.layout.activity_cart);
+
+
 
         recyclerView = findViewById(R.id.cart_list);
         recyclerView.setHasFixedSize(true);
@@ -241,19 +248,55 @@ public class CartActivity extends AppCompatActivity {
         CheckOrderState();
         super.onStart();
 
+        overTotalPrice = 0.0;
+
+
+
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
+
+        final DatabaseReference d1 =  cartListRef.child("User View").child(Prevalant.currentOnlineUser.getPhone()).child("Products");
+
+        d1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                try{
+                    for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                        Products myp = dataSnapshot1.getValue(Products.class);
+                        Cart myp1 = dataSnapshot1.getValue(Cart.class);
+                        //Toast.makeText(CartActivity.this, ""+myp.getPrice(), Toast.LENGTH_SHORT).show();
+                        oneTyprProductTPrice = ((Double.valueOf(myp.getPrice()))) * Integer.valueOf(myp1.getQuantity());
+                       // oneTyprProductTPrice = ((Double.valueOf(myp.getPrice())));
+                        overTotalPrice  += oneTyprProductTPrice;
+
+                        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+                        overTotalPrice1 = formatter.format(overTotalPrice);
+
+                        TxtTotalAmount.setText("Total Price: " + overTotalPrice1);
+                    }
+
+                }catch (DatabaseException ex){
+                    //Toast.makeText(MessageActivity.this, ""+ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
         FirebaseRecyclerOptions<Cart> options = new FirebaseRecyclerOptions.Builder<Cart>().setQuery(cartListRef.child("User View").child(Prevalant.currentOnlineUser.getPhone()).child("Products"), Cart.class).build();
 
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull final Cart model) {
-            holder.txtItemQuantity.setText("Quantity: " + model.getQuantity());
-            holder.txtItemName.setText(model.getIname());
-            holder.txtItemPrice.setText("£" + model.getPrice());
 
-            int oneTyprProductTPrice = ((Integer.valueOf(model.getPrice()))) * Integer.valueOf(model.getQuantity());
-            overTotalPrice = overTotalPrice + oneTyprProductTPrice;
-            TxtTotalAmount.setText("Total Price: £" + String.valueOf(overTotalPrice));
+            holder.txtItemQuantity.setText("x " + model.getQuantity());
+            holder.txtItemName.setText(model.getIname());
+            holder.txtItemPrice.setText(model.getPrice());
 
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -294,6 +337,7 @@ public class CartActivity extends AppCompatActivity {
                     builder.show();
                 }
             });
+
             }
             @NonNull
             @Override
@@ -305,6 +349,8 @@ public class CartActivity extends AppCompatActivity {
         };
         recyclerView.setAdapter(adapter);
         adapter.startListening();
+
+
 
 
     }

@@ -93,6 +93,8 @@ public class Home extends AppCompatActivity
         CircleImageView profileImageView = headerView.findViewById(R.id.user_profile_image);
 
         if(type.equals("Admin")){
+            toolbarName.setText("Admin");
+            userNameTextView.setText("Welcome Admin");
             fab.setVisibility(View.GONE);
         }
 

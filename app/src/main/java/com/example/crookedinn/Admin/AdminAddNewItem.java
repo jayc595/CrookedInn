@@ -24,6 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AdminAddNewItem extends AppCompatActivity {
     private String CategoryName, Description, Iname, Price, saveCurrentDate, saveCurrentTime;
@@ -201,18 +203,22 @@ public class AdminAddNewItem extends AppCompatActivity {
         Price = InputItemPrice.getText().toString();
         Iname = InputItemName.getText().toString();
 
-        if (TextUtils.isEmpty(Description)) {
+
+            if (TextUtils.isEmpty(Description)) {
             Toast.makeText(this, "Please include a product description", Toast.LENGTH_SHORT).show();
-        }
+            }
             else if (TextUtils.isEmpty(Price)) {
                 Toast.makeText(this, "Please include a product price", Toast.LENGTH_SHORT).show();
             }
             else if (TextUtils.isEmpty(Iname)) {
                 Toast.makeText(this, "Please include a product name", Toast.LENGTH_SHORT).show();
             }
-            else {
+            else if(!Price.contains(".")) {
+                Toast.makeText(this, "Price must be entered in decimal format", Toast.LENGTH_SHORT).show();
+            }else {
                 StoreItemInformation();
-        }
+
+            }
         }
         private void StoreItemInformation(){
 
@@ -265,6 +271,8 @@ public class AdminAddNewItem extends AppCompatActivity {
         productMap.put("stock", Stock);
 
 
+
+
         ProductRef.child(productRandomKey).updateChildren(productMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -282,5 +290,10 @@ public class AdminAddNewItem extends AppCompatActivity {
                 }
             }
         });
+
+
+
+
+
     }
 }

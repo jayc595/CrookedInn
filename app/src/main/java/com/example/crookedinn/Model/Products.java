@@ -3,9 +3,6 @@ package com.example.crookedinn.Model;
 public class Products {
     private String iname, price, category, description, pid, date, time, gf, df, stock;
 
-
-
-
     public Products(){
 
     }
