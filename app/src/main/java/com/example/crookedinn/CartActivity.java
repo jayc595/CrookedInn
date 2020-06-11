@@ -62,6 +62,7 @@ public class CartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //txtMSG1.setVisibility(View.GONE);
 
 //        Spinner spinner = (Spinner) findViewById(R.id.table_number);
 //        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tables, android.R.layout.simple_spinner_item);
@@ -70,7 +71,6 @@ public class CartActivity extends AppCompatActivity {
 //        spinner.setOnItemSelectedListener(this);
 
         setContentView(R.layout.activity_cart);
-
 
 
         recyclerView = findViewById(R.id.cart_list);
@@ -86,158 +86,172 @@ public class CartActivity extends AppCompatActivity {
 
 //       TableNumber = (TextView) findViewById(R.id.table_number);
 
+        if(overTotalPrice1.equals("")) {
+            txtMSG1.setVisibility(View.VISIBLE);
+            txtMSG1.setText("Your Order is currently empty");
+        }
+        if(!overTotalPrice1.equals("")){
+            txtMSG1.setVisibility(View.GONE);
+            txtMSG1.setText("");
+        }
+
         NextProcessBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CharSequence options[] = new CharSequence[] {
-                        "Upstairs",
-                        "Outside",
-                        "Table 1",
-                        "Table 2",
-                        "Table 3",
-                        "Table 4",
-                        "Table 5",
-                        "Table 6",
-                        "Table 7",
-                        "Table 8",
-                        "Table 9",
-                        "Table 10",
-                        "Table 11",
-                        "Table 12",
-                        "Table 13",
-                        "Table 14"
-                };
-                AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
-                builder.setTitle("Table Number:");
+                if (!overTotalPrice1.equals("")) {
+                    CharSequence options[] = new CharSequence[]{
+                            "Upstairs",
+                            "Outside",
+                            "Table 1",
+                            "Table 2",
+                            "Table 3",
+                            "Table 4",
+                            "Table 5",
+                            "Table 6",
+                            "Table 7",
+                            "Table 8",
+                            "Table 9",
+                            "Table 10",
+                            "Table 11",
+                            "Table 12",
+                            "Table 13",
+                            "Table 14"
+                    };
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
+                    builder.setTitle("Table Number:");
 
-                builder.setItems(options, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int i) {
-                        if (i == 0) {
-                            TableNum = "Upstairs";
-                            Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
-                            intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-                            intent.putExtra("Table Number", String.valueOf(TableNum));
-                            startActivity(intent);
-                            finish();
+                    builder.setItems(options, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            if (i == 0) {
+                                TableNum = "Upstairs";
+                                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
+                                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                                intent.putExtra("Table Number", String.valueOf(TableNum));
+                                startActivity(intent);
+                                finish();
+                            }
+                            if (i == 1) {
+                                TableNum = "Outside";
+                                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
+                                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                                intent.putExtra("Table Number", String.valueOf(TableNum));
+                                startActivity(intent);
+                                finish();
+                            }
+                            if (i == 2) {
+                                TableNum = "1";
+                                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
+                                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                                intent.putExtra("Table Number", String.valueOf(TableNum));
+                                startActivity(intent);
+                                finish();
+                            }
+                            if (i == 3) {
+                                TableNum = "2";
+                                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
+                                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                                intent.putExtra("Table Number", String.valueOf(TableNum));
+                                startActivity(intent);
+                                finish();
+                            }
+                            if (i == 4) {
+                                TableNum = "3";
+                                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
+                                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                                intent.putExtra("Table Number", String.valueOf(TableNum));
+                                startActivity(intent);
+                                finish();
+                            }
+                            if (i == 5) {
+                                TableNum = "4";
+                                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
+                                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                                intent.putExtra("Table Number", String.valueOf(TableNum));
+                                startActivity(intent);
+                                finish();
+                            }
+                            if (i == 6) {
+                                TableNum = "5";
+                                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
+                                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                                intent.putExtra("Table Number", String.valueOf(TableNum));
+                                startActivity(intent);
+                                finish();
+                            }
+                            if (i == 7) {
+                                TableNum = "6";
+                                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
+                                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                                intent.putExtra("Table Number", String.valueOf(TableNum));
+                                startActivity(intent);
+                                finish();
+                            }
+                            if (i == 8) {
+                                TableNum = "7";
+                                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
+                                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                                intent.putExtra("Table Number", String.valueOf(TableNum));
+                                startActivity(intent);
+                                finish();
+                            }
+                            if (i == 9) {
+                                TableNum = "8";
+                                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
+                                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                                intent.putExtra("Table Number", String.valueOf(TableNum));
+                                startActivity(intent);
+                                finish();
+                            }
+                            if (i == 10) {
+                                TableNum = "9";
+                                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
+                                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                                intent.putExtra("Table Number", String.valueOf(TableNum));
+                                startActivity(intent);
+                                finish();
+                            }
+                            if (i == 11) {
+                                TableNum = "10";
+                                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
+                                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                                intent.putExtra("Table Number", String.valueOf(TableNum));
+                                startActivity(intent);
+                                finish();
+                            }
+                            if (i == 12) {
+                                TableNum = "11";
+                                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
+                                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                                intent.putExtra("Table Number", String.valueOf(TableNum));
+                                startActivity(intent);
+                                finish();
+                            }
+                            if (i == 13) {
+                                TableNum = "12";
+                                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
+                                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                                intent.putExtra("Table Number", String.valueOf(TableNum));
+                                startActivity(intent);
+                                finish();
+                            }
+                            if (i == 14) {
+                                TableNum = "13";
+                                Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
+                                intent.putExtra("Total Price", String.valueOf(overTotalPrice));
+                                intent.putExtra("Table Number", String.valueOf(TableNum));
+                                startActivity(intent);
+                                finish();
+                            }
                         }
-                        if (i == 1) {
-                            TableNum = "Outside";
-                            Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
-                            intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-                            intent.putExtra("Table Number", String.valueOf(TableNum));
-                            startActivity(intent);
-                            finish();
-                        }
-                        if (i == 2) {
-                            TableNum = "1";
-                            Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
-                            intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-                            intent.putExtra("Table Number", String.valueOf(TableNum));
-                            startActivity(intent);
-                            finish();
-                        }
-                        if (i == 3) {
-                            TableNum = "2";
-                            Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
-                            intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-                            intent.putExtra("Table Number", String.valueOf(TableNum));
-                            startActivity(intent);
-                            finish();
-                        }
-                        if (i == 4) {
-                            TableNum = "3";
-                            Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
-                            intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-                            intent.putExtra("Table Number", String.valueOf(TableNum));
-                            startActivity(intent);
-                            finish();
-                        }
-                        if (i == 5) {
-                            TableNum = "4";
-                            Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
-                            intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-                            intent.putExtra("Table Number", String.valueOf(TableNum));
-                            startActivity(intent);
-                            finish();
-                        }
-                        if (i == 6) {
-                            TableNum = "5";
-                            Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
-                            intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-                            intent.putExtra("Table Number", String.valueOf(TableNum));
-                            startActivity(intent);
-                            finish();
-                        }
-                        if (i == 7) {
-                            TableNum = "6";
-                            Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
-                            intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-                            intent.putExtra("Table Number", String.valueOf(TableNum));
-                            startActivity(intent);
-                            finish();
-                        }
-                        if (i == 8) {
-                            TableNum = "7";
-                            Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
-                            intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-                            intent.putExtra("Table Number", String.valueOf(TableNum));
-                            startActivity(intent);
-                            finish();
-                        }
-                        if (i == 9) {
-                            TableNum = "8";
-                            Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
-                            intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-                            intent.putExtra("Table Number", String.valueOf(TableNum));
-                            startActivity(intent);
-                            finish();
-                        }
-                        if (i == 10) {
-                            TableNum = "9";
-                            Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
-                            intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-                            intent.putExtra("Table Number", String.valueOf(TableNum));
-                            startActivity(intent);
-                            finish();
-                        }
-                        if (i == 11) {
-                            TableNum = "10";
-                            Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
-                            intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-                            intent.putExtra("Table Number", String.valueOf(TableNum));
-                            startActivity(intent);
-                            finish();
-                        }
-                        if (i == 12) {
-                            TableNum = "11";
-                            Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
-                            intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-                            intent.putExtra("Table Number", String.valueOf(TableNum));
-                            startActivity(intent);
-                            finish();
-                        }
-                        if (i == 13) {
-                            TableNum = "12";
-                            Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
-                            intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-                            intent.putExtra("Table Number", String.valueOf(TableNum));
-                            startActivity(intent);
-                            finish();
-                        }
-                        if (i == 14) {
-                            TableNum = "13";
-                            Intent intent = new Intent(CartActivity.this, ConfirmFinalOrder.class);
-                            intent.putExtra("Total Price", String.valueOf(overTotalPrice));
-                            intent.putExtra("Table Number", String.valueOf(TableNum));
-                            startActivity(intent);
-                            finish();
-                        }
-                    }
-                });
-                builder.show();
+                    });
+                    builder.show();
 
 
+                } else {
+                    Toast.makeText(CartActivity.this, "Please add to your Order", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
     }
@@ -296,7 +310,7 @@ public class CartActivity extends AppCompatActivity {
 
             holder.txtItemQuantity.setText("x " + model.getQuantity());
             holder.txtItemName.setText(model.getIname());
-            holder.txtItemPrice.setText(model.getPrice());
+            holder.txtItemPrice.setText("£" + model.getPrice());
 
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,6 +55,8 @@ public class AdminMaintainActivity extends AppCompatActivity {
         deleteBtn = findViewById(R.id.delete_button);
 
         displaySpecificInfo();
+
+        itemDescription.setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
         applyChangesBtn.setOnClickListener(new View.OnClickListener() {
             @Override

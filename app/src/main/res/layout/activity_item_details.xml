@@ -12,10 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Product Name"
-        android:background="@drawable/title"
+        android:background="@drawable/stroke2"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
-        android:textSize="25sp"
+        android:textSize="40sp"
         android:gravity="center"
         />
     <TextView
@@ -24,10 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/product_name_display"
         android:text="Product Information"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
         android:gravity="center"
@@ -35,24 +35,88 @@
         />
 
     <TextView
-        android:id="@+id/price_display"
+    android:id="@+id/price_display"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/product_info_display"
+    android:text="Price"
+    android:layout_marginTop="20dp"
+    android:textColor="@color/colorPrimary"
+    android:textStyle="bold"
+    android:textSize="20sp"
+    android:gravity="center"
+    />
+
+    <TextView
+        android:id="@+id/price_display2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/product_info_display"
         android:text="Price"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         android:textSize="20sp"
         android:gravity="center"
+        android:visibility="gone"
         />
+
+    <ImageView
+        android:id="@+id/GF_image"
+        android:layout_width="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="50dp"
+        android:src="@drawable/gf"
+        android:layout_below="@id/price_display"
+        android:layout_marginLeft="100dp"
+        >
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/DF_image"
+        android:layout_width="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="50dp"
+        android:src="@drawable/df"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/price_display"
+        android:layout_marginRight="100dp"
+        >
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/NotGF_image"
+        android:layout_width="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="50dp"
+        android:src="@drawable/gfnot"
+        android:layout_below="@id/price_display"
+        android:layout_marginLeft="100dp"
+        >
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/NotDF_image"
+        android:layout_width="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="50dp"
+        android:src="@drawable/dfnot"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/price_display"
+        android:layout_marginRight="100dp"
+        >
+
+    </ImageView>
 
     <TextView
         android:id="@+id/glutenfree_display"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/price_display"
-        android:text="GlutenFree"
+        android:layout_below="@+id/GF_image"
+        android:text="This item is Gluten Free"
         android:layout_marginTop="25dp"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
@@ -65,11 +129,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/glutenfree_display"
-        android:text="DairyFree"
+        android:text="This item is Dairy Free"
         android:layout_marginTop="25dp"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         android:textSize="20sp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/pleasenote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dairyfree_display"
+        android:text="Please note: If you have any other allergies, please visit the bar before placing an order "
+        android:layout_marginTop="25dp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="15sp"
         android:gravity="center"
         />
 
@@ -82,7 +159,7 @@
         android:layout_centerHorizontal="true"
         app:finalNumber="10"
         app:initialNumber="1"
-        android:layout_below="@+id/dairyfree_display"
+        android:layout_below="@+id/pleasenote"
         app:textSize="16sp"
         >
     </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>

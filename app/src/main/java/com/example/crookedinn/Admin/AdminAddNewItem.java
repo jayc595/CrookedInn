@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -56,6 +57,7 @@ public class AdminAddNewItem extends AppCompatActivity {
         chkboxGlutenFree = (CheckBox) findViewById(R.id.glutenfree_chkb);
         chkboxOutOfStock = (CheckBox) findViewById(R.id.outofstock_chkbx);
 
+        InputItemDescription.setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
         Title.setText("Adding to '" + CategoryName + "' Category");
 
@@ -65,6 +67,9 @@ public class AdminAddNewItem extends AppCompatActivity {
                 ValidateItemData();
             }
         });
+
+
+
 
 //        if ( CategoryName.equals("softdrinks") || CategoryName.equals("hotdrinks")|| CategoryName.equals("beer") || CategoryName.equals("wine")|| CategoryName.equals("spirits")) {
 //            chkboxGlutenFree.setVisibility(View.INVISIBLE);

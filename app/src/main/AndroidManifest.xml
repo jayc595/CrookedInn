@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ResetPassword"></activity>
+        <activity android:name=".Admin.KitchenSettings"></activity>
+        <activity android:name=".Admin.SettingsAdmin" />
+        <activity android:name=".ResetPassword" />
         <activity android:name=".Admin.AdminMaintainActivity" />
         <activity
             android:name=".Admin.AdminHome"

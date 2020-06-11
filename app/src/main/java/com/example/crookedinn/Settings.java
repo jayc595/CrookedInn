@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -38,7 +39,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Settings extends AppCompatActivity {
     private CircleImageView profileImageView;
     private EditText fullNameEditText, userPhoneEditText, userPassword;
-    private TextView profileChangeTextBtn, closeTextBtn, saveTextButton;
+    private TextView profileChangeTextBtn, closeTextBtn, saveTextButton, showPassword, hidePassword;
     private Button SecurityQuestions;
 
     private Uri imageUri;
@@ -62,8 +63,30 @@ public class Settings extends AppCompatActivity {
         closeTextBtn = (TextView) findViewById(R.id.close_settings_btn);
         saveTextButton = (TextView) findViewById(R.id.update_settings_btn);
         SecurityQuestions = (Button) findViewById(R.id.security_questions_settings);
+        showPassword = (TextView) findViewById(R.id.showpassword);
+        hidePassword = (TextView) findViewById(R.id.hidepassword);
 
         userInfoDisplay(profileImageView, fullNameEditText, userPhoneEditText, userPassword);
+
+        userPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+        showPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPassword.setVisibility(View.GONE);
+                hidePassword.setVisibility(View.VISIBLE);
+                userPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            }
+        });
+
+        hidePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPassword.setVisibility(View.VISIBLE);
+                hidePassword.setVisibility(View.GONE);
+                userPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            }
+        });
 
         closeTextBtn.setOnClickListener(new View.OnClickListener() {
             @Override

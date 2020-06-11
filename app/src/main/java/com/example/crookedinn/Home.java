@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.crookedinn.Admin.KitchenSettings;
+import com.example.crookedinn.Admin.SettingsAdmin;
 import com.example.crookedinn.Model.Products;
 import com.example.crookedinn.Admin.AdminMaintainActivity;
 import com.example.crookedinn.Prevalant.Prevalant;
@@ -130,7 +132,7 @@ public class Home extends AppCompatActivity
                     holder.itemView.setVisibility(View.VISIBLE);
 
                     holder.txtItemName.setText(model.getIname());
-                    holder.txtItemPrice.setText(model.getPrice());
+                    holder.txtItemPrice.setText("£" + model.getPrice());
                     holder.txtItemCategory.setText(model.getCategory());
 
 
@@ -176,7 +178,7 @@ public class Home extends AppCompatActivity
                         holder.itemView.setVisibility(View.VISIBLE);
 
                         holder.txtItemName.setText(model.getIname());
-                        holder.txtItemPrice.setText(model.getPrice());
+                        holder.txtItemPrice.setText("£" + model.getPrice());
                         holder.txtItemCategory.setText(model.getCategory());
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -196,7 +198,7 @@ public class Home extends AppCompatActivity
                             holder.itemView.setVisibility(View.VISIBLE);
 
                             holder.txtItemName.setText(model.getIname());
-                            holder.txtItemPrice.setText(model.getPrice());
+                            holder.txtItemPrice.setText("£" + model.getPrice());
                             holder.txtItemCategory.setText(model.getCategory());
 
                             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -292,6 +294,8 @@ public class Home extends AppCompatActivity
                 Intent intent = new Intent(Home.this, Settings.class);
                 startActivity(intent);
             } else {
+                Intent intent = new Intent(Home.this, KitchenSettings.class);
+                startActivity(intent);
                 Toast.makeText(this, "You don't have permission", Toast.LENGTH_SHORT).show();
             }
 

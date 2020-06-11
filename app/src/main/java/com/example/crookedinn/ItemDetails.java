@@ -3,10 +3,12 @@ package com.example.crookedinn;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,8 +32,9 @@ import java.util.HashMap;
 public class ItemDetails extends AppCompatActivity {
     private Button addToCartBtn;
     private ElegantNumberButton numberButton;
-    private TextView productPrice, productDescription, productName, productGf, productDf;
+    private TextView productPrice, productDescription, productName, productGf, productDf, productPnull;
     private String productID = "", state = "Normal";
+    private ImageView GFimg, DFimg, NotGFimg, NotDFimg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,13 @@ public class ItemDetails extends AppCompatActivity {
         productPrice = (TextView) findViewById(R.id.price_display);
         productGf = (TextView) findViewById(R.id.glutenfree_display);
         productDf = (TextView) findViewById(R.id.dairyfree_display);
+        productPnull = (TextView) findViewById(R.id.price_display2);
+
+        DFimg = (ImageView) findViewById(R.id.DF_image);
+        GFimg = (ImageView) findViewById(R.id.GF_image);
+        NotDFimg = (ImageView) findViewById(R.id.NotDF_image);
+        NotGFimg = (ImageView) findViewById(R.id.NotGF_image);
+
 
         getProductDetails(productID);
 
@@ -90,7 +100,7 @@ public class ItemDetails extends AppCompatActivity {
         cartMap.put("pid", productID);
         cartMap.put("phone", Prevalant.currentOnlineUser.getPhone());
         cartMap.put("iname", productName.getText().toString());
-        cartMap.put("price", productPrice.getText().toString());
+        cartMap.put("price", productPnull.getText().toString());
         cartMap.put("date", saveCurrentDate);
         cartMap.put("time", saveCurrentTime);
         cartMap.put("quantity", numberButton.getNumber());
@@ -125,12 +135,35 @@ public class ItemDetails extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     Products products = dataSnapshot.getValue(Products.class);
-
                     productName.setText(products.getIname());
-                    productPrice.setText(products.getPrice());
+                    productPnull.setText(products.getPrice());
+                    productPrice.setText("£" + products.getPrice());
                     productDescription.setText(products.getDescription());
-                    productGf.setText("Gluten Free: " + products.getGf());
-                    productDf.setText("Dairy Free: " + products.getDf());
+//                    productGf.setText("Gluten Free: " + products.getGf());
+//                    productDf.setText("Dairy Free: " + products.getDf());
+
+                    if(products.getGf().equals("Yes")){
+                        productGf.setText("This item is Gluten Free!");
+                        NotGFimg.setVisibility(View.INVISIBLE);
+                    } else if (products.getGf().equals("No")){
+                        productGf.setText("This item is NOT Gluten Free!");
+                        GFimg.setVisibility(View.INVISIBLE);
+                    } else {
+                        productGf.setVisibility(View.GONE);
+                        GFimg.setVisibility(View.GONE);
+                        NotGFimg.setVisibility(View.GONE);
+                    }
+                    if(products.getDf().equals("Yes")){
+                        productDf.setText("This item is Dairy Free!");
+                        NotDFimg.setVisibility(View.INVISIBLE);
+                    } else if (products.getDf().equals("No")){
+                        productDf.setText("This item is NOT Dairy Free!");
+                        DFimg.setVisibility(View.INVISIBLE);
+                    } else {
+                        productDf.setVisibility(View.GONE);
+                        DFimg.setVisibility(View.GONE);
+                        NotDFimg.setVisibility(View.GONE);
+                    }
                 }
             }
 

@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/categorynamelayout_maintain"
             android:hint="Item Name"
+            android:inputType="textCapWords"
             android:textStyle="bold"
             android:textSize="20sp"
             android:padding="12dp"
@@ -46,6 +47,7 @@
         <EditText
             android:id="@+id/item_price_layout_maintain"
             android:layout_width="match_parent"
+            android:inputType="numberDecimal"
             android:layout_height="wrap_content"
             android:hint="Product Price"
             android:textStyle="bold"
@@ -61,6 +63,7 @@
             android:id="@+id/product_description_maintain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
             android:layout_below="@+id/item_price_layout_maintain"
             android:hint="Product Description"
             android:background="@drawable/input_design"

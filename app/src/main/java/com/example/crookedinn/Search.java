@@ -41,7 +41,6 @@ public class Search extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 searchInput = inputText.getText().toString();
-                Toast.makeText(Search.this, "buttonclick", Toast.LENGTH_SHORT).show();
                 onStart();
             }
         });
@@ -53,14 +52,14 @@ public class Search extends AppCompatActivity {
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
 
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("iname").startAt(searchInput), Products.class).build();
+        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("iname").startAt(searchInput).endAt(searchInput), Products.class).build();
 
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
                 holder.txtItemName.setText(model.getIname());
                 holder.txtItemCategory.setText(model.getCategory());
-                holder.txtItemPrice.setText(model.getPrice());
+                holder.txtItemPrice.setText("£" + model.getPrice());
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override

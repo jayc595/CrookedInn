@@ -80,6 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/picture_image_change"
         android:hint="Full Name"
+        android:inputType="textCapWords"
         android:layout_margin="15dp">
 
     </EditText>
@@ -100,18 +101,53 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/settings_phone_number"
         android:hint="Password"
-        android:layout_margin="15dp">
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp">
 
     </EditText>
+
+    <TextView
+        android:id="@+id/showpassword"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:textSize="13dp"
+        android:layout_below="@id/settings_password"
+        android:text="Show password"
+        android:gravity="end"
+        android:layout_alignParentEnd="true"
+        android:textColor="@android:color/black"
+        android:layout_marginRight="15dp"
+>
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/hidepassword"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:textSize="13dp"
+        android:layout_below="@id/settings_password"
+        android:text="Hide password"
+        android:gravity="end"
+        android:layout_alignParentEnd="true"
+        android:textColor="@android:color/black"
+        android:layout_marginRight="15dp"
+        android:visibility="invisible"
+        >
+
+    </TextView>
 
     <Button
         android:id="@+id/security_questions_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/settings_password"
         android:text="Set Security Questions"
         android:textColor="@android:color/white"
-        android:layout_margin="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="480dp"
         android:background="@drawable/buttons">
 
 
