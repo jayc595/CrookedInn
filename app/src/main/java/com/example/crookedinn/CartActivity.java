@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.ColorSpace;
 import android.os.Bundle;
 import android.text.GetChars;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 
 import com.chivorn.smartmaterialspinner.SmartMaterialSpinner;
 import com.example.crookedinn.Model.Cart;
+import com.example.crookedinn.Model.Openclosed;
 import com.example.crookedinn.Model.Products;
 import com.example.crookedinn.Prevalant.Prevalant;
 import com.example.crookedinn.ViewHolder.CartViewHolder;
@@ -49,13 +51,13 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Button NextProcessBtn;
-    private TextView TxtTotalAmount, txtMSG1;
+    private TextView TxtTotalAmount, txtMSG1, categoryNull;
     private EditText AdditionalNotes;
     private RelativeLayout rl1;
 
     private double overTotalPrice = 0.0;
     private double oneTyprProductTPrice = 0.0;
-    private String TableNum = "0", overTotalPrice1 = "";
+    private String TableNum = "0", overTotalPrice1 = "", lunch = "", barmenu = "", specialmenu= "";
 
 
 
@@ -83,6 +85,9 @@ public class CartActivity extends AppCompatActivity {
         txtMSG1 = (TextView) findViewById(R.id.msg1);
         AdditionalNotes = (EditText) findViewById(R.id.additional_notes);
         rl1 = (RelativeLayout) findViewById(R.id.rl1);
+        categoryNull = (TextView) findViewById(R.id.prodCategoryNull);
+
+        rl1.setVisibility(View.VISIBLE);
 
 //       TableNumber = (TextView) findViewById(R.id.table_number);
 
@@ -90,14 +95,37 @@ public class CartActivity extends AppCompatActivity {
             txtMSG1.setVisibility(View.VISIBLE);
             txtMSG1.setText("Your Order is currently empty");
         }
-        if(!overTotalPrice1.equals("")){
-            txtMSG1.setVisibility(View.GONE);
-            txtMSG1.setText("");
-        }
+
+        DatabaseReference openref = FirebaseDatabase.getInstance().getReference().child("OpenClosed");
+        openref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    Openclosed openclosed = dataSnapshot.getValue(Openclosed.class);
+                    if(openclosed.getLunchmenu().equals("Closed")){
+                        lunch = "Closed";
+                    }
+                    else if(openclosed.getBarmenu().equals("Closed")){
+                        barmenu = "Closed";
+                    }
+                    else if(openclosed.getSpecialsmenu().equals("Closed")){
+                        specialmenu = "Closed";
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         NextProcessBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 if (!overTotalPrice1.equals("")) {
                     CharSequence options[] = new CharSequence[]{
                             "Upstairs",
@@ -259,6 +287,13 @@ public class CartActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+//
+//
+//        if(!TxtTotalAmount.equals("")){
+//            txtMSG1.setVisibility(View.GONE);
+//            txtMSG1.setText("");
+//        }
+
         CheckOrderState();
         super.onStart();
 
@@ -287,6 +322,7 @@ public class CartActivity extends AppCompatActivity {
                         overTotalPrice1 = formatter.format(overTotalPrice);
 
                         TxtTotalAmount.setText("Total Price: " + overTotalPrice1);
+                        txtMSG1.setVisibility(View.GONE);
                     }
 
                 }catch (DatabaseException ex){
@@ -300,8 +336,6 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
-
-
         FirebaseRecyclerOptions<Cart> options = new FirebaseRecyclerOptions.Builder<Cart>().setQuery(cartListRef.child("User View").child(Prevalant.currentOnlineUser.getPhone()).child("Products"), Cart.class).build();
 
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
@@ -312,6 +346,27 @@ public class CartActivity extends AppCompatActivity {
             holder.txtItemName.setText(model.getIname());
             holder.txtItemPrice.setText("£" + model.getPrice());
 
+            if(model.getCategory().equals("lunch") && lunch.equals("Closed")){
+                Toast.makeText(CartActivity.this, "CONTAINS lunch Item", Toast.LENGTH_SHORT).show();
+                rl1.setVisibility(View.INVISIBLE);
+                holder.txtItemName.setTextColor(Color.RED);
+                holder.txtItemPrice.setTextColor(Color.RED);
+                holder.txtItemQuantity.setTextColor(Color.RED);
+            }
+            else if(model.getCategory().equals("specials") && specialmenu.equals("Closed")){
+                Toast.makeText(CartActivity.this, "CONTAINS specials Item", Toast.LENGTH_SHORT).show();
+                rl1.setVisibility(View.INVISIBLE);
+                holder.txtItemName.setTextColor(Color.RED);
+                holder.txtItemPrice.setTextColor(Color.RED);
+                holder.txtItemQuantity.setTextColor(Color.RED);
+            }
+            else if(model.getCategory().equals("grll") || model.getCategory().equals("pasta") || model.getCategory().equals("sides") || model.getCategory().equals("dessert") || model.getCategory().equals("starters") && barmenu.equals("Closed")) {
+                Toast.makeText(CartActivity.this, "CONTAINS bar Item", Toast.LENGTH_SHORT).show();
+                rl1.setVisibility(View.INVISIBLE);
+                holder.txtItemName.setTextColor(Color.RED);
+                holder.txtItemPrice.setTextColor(Color.RED);
+                holder.txtItemQuantity.setTextColor(Color.RED);
+            }
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -363,9 +418,6 @@ public class CartActivity extends AppCompatActivity {
         };
         recyclerView.setAdapter(adapter);
         adapter.startListening();
-
-
-
 
     }
 

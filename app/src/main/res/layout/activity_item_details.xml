@@ -52,13 +52,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/product_info_display"
-        android:text="Price"
         android:layout_marginTop="20dp"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         android:textSize="20sp"
         android:gravity="center"
         android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/categorynull"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/number_button"
+        android:layout_marginTop="20dp"
+        android:text="test"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:visibility="invisible"
         />
 
     <ImageView

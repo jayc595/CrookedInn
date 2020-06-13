@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.crookedinn.Model.Openclosed;
 import com.example.crookedinn.Model.Products;
 import com.example.crookedinn.Prevalant.Prevalant;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,7 +33,7 @@ import java.util.HashMap;
 public class ItemDetails extends AppCompatActivity {
     private Button addToCartBtn;
     private ElegantNumberButton numberButton;
-    private TextView productPrice, productDescription, productName, productGf, productDf, productPnull;
+    private TextView productPrice, productDescription, productName, productGf, productDf, productPnull, productCnull;
     private String productID = "", state = "Normal";
     private ImageView GFimg, DFimg, NotGFimg, NotDFimg;
 
@@ -49,7 +50,9 @@ public class ItemDetails extends AppCompatActivity {
         productPrice = (TextView) findViewById(R.id.price_display);
         productGf = (TextView) findViewById(R.id.glutenfree_display);
         productDf = (TextView) findViewById(R.id.dairyfree_display);
+
         productPnull = (TextView) findViewById(R.id.price_display2);
+        productCnull = (TextView) findViewById(R.id.categorynull) ;
 
         DFimg = (ImageView) findViewById(R.id.DF_image);
         GFimg = (ImageView) findViewById(R.id.GF_image);
@@ -62,16 +65,47 @@ public class ItemDetails extends AppCompatActivity {
         addToCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final String category = productCnull.getText().toString();
+                DatabaseReference openref = FirebaseDatabase.getInstance().getReference().child("OpenClosed");
+                openref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            Openclosed openclosed = dataSnapshot.getValue(Openclosed.class);
+                            if(openclosed.getBar().equals("Closed")){
+                                Toast.makeText(ItemDetails.this, "Sorry we are currently Closed!", Toast.LENGTH_LONG).show();
+                                finish();
+                                }
+                            else if(openclosed.getLunchmenu().equals("Closed") && category.equals("lunch")){
+                                Toast.makeText(ItemDetails.this, "Lunch menu is currently not available", Toast.LENGTH_LONG).show();
+                                finish();
+                            }
+                            else if(openclosed.getSpecialsmenu().equals("Closed") && category.equals("specials")){
+                                Toast.makeText(ItemDetails.this, "Special menu is currently not available", Toast.LENGTH_LONG).show();
+                                finish();
+                            }
 
-                if (state.equals("Order Placed")) {
-                    Toast.makeText(ItemDetails.this, "Please wait till your order has been confirmed", Toast.LENGTH_LONG).show();
-                }
-                    if (state.equals("Order Confirmed")) {
-                        Toast.makeText(ItemDetails.this, "Please wait till your order has arrived", Toast.LENGTH_SHORT).show();
+//                            else {
+//                                if (state.equals("Order Placed")) {
+//                                    Toast.makeText(ItemDetails.this, "Please wait till your order has been confirmed", Toast.LENGTH_LONG).show();
+//                                }
+//                                if (state.equals("Order Confirmed")) {
+//                                    Toast.makeText(ItemDetails.this, "Please wait till your order has arrived", Toast.LENGTH_SHORT).show();
+//                                }
+                                else {
+                                    addingToCartList();
+                                }
+
+                           // }
+                        }
                     }
-                else {
-                    addingToCartList();
-                }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             }
 
         });
@@ -101,6 +135,7 @@ public class ItemDetails extends AppCompatActivity {
         cartMap.put("phone", Prevalant.currentOnlineUser.getPhone());
         cartMap.put("iname", productName.getText().toString());
         cartMap.put("price", productPnull.getText().toString());
+        cartMap.put("category", productCnull.getText().toString());
         cartMap.put("date", saveCurrentDate);
         cartMap.put("time", saveCurrentTime);
         cartMap.put("quantity", numberButton.getNumber());
@@ -139,6 +174,7 @@ public class ItemDetails extends AppCompatActivity {
                     productPnull.setText(products.getPrice());
                     productPrice.setText("£" + products.getPrice());
                     productDescription.setText(products.getDescription());
+                    productCnull.setText(products.getCategory());
 //                    productGf.setText("Gluten Free: " + products.getGf());
 //                    productDf.setText("Dairy Free: " + products.getDf());
 

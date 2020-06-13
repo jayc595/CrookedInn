@@ -1,62 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="20dp"
-    android:layout_marginStart="15dp"
-    android:layout_marginEnd="15dp"
-    app:cardElevation="15dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Search">
 
     <RelativeLayout
-        android:id="@+id/layout_view_user_cate_items"
+        android:id="@+id/search"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="60dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
 
         <TextView
-            android:id="@+id/categorynamelayout_user_cate_items"
-            android:layout_width="match_parent"
+            android:id="@+id/filter_product_name"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Category Name"
-            android:textAllCaps="true"
-            android:textAlignment="center"
-            android:textSize="15sp"
+            android:text="Category Title"
+            android:textColor="@android:color/white"
+            android:textSize="18dp"
             android:textStyle="bold"
-            android:textColor="@android:color/darker_gray">
-        </TextView>
-
-        <TextView
-            android:id="@+id/item_name_layout_user_cate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/categorynamelayout_user_cate_items"
-            android:text="Item Name"
-            android:textStyle="bold"
-            android:textSize="20sp"
+            android:layout_marginLeft="8dp"
+            android:inputType="textCapCharacters"
+            android:layout_centerVertical="true"
             android:gravity="center"
-            />
-        <TextView
-            android:id="@+id/item_price_layout_user_cate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="£9.99"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_below="@+id/item_name_layout_user_cate"
-            android:gravity="center"
-            />
-
-        <TextView
-            android:id="@+id/item_add_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="+"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:layout_below="@id/item_price_layout_user_cate"/>
-
+            android:padding="9dp"/>
 
     </RelativeLayout>
-</androidx.cardview.widget.CardView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/filter_list_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/search"/>
+
+</RelativeLayout>

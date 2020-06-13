@@ -8,7 +8,7 @@
     tools:context=".CartActivity">
 
     <RelativeLayout
-        android:id="@+id/rl"
+        android:id="@+id/r2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/colorPrimaryDark">
@@ -49,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/rl1"
-        android:layout_below="@+id/rl"
+        android:layout_below="@+id/r2"
         android:layout_marginTop="1dp"
         android:layout_marginBottom="2dp">
 

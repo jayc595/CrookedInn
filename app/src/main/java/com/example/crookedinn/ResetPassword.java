@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -160,13 +161,14 @@ public class ResetPassword extends AppCompatActivity {
                                 Toast.makeText(ResetPassword.this, "One of your Security Questions are Incorrect", Toast.LENGTH_SHORT).show();
                             }
                             else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(ResetPassword.this);
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(ResetPassword.this);
                                 builder.setTitle("New Password");
                                 final EditText newPassword = new EditText(ResetPassword.this);
                                 newPassword.setHint("Write new password");
                                 builder.setView(newPassword);
 
                                 builder.setPositiveButton("Change", new DialogInterface.OnClickListener() {
+
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         if(!newPassword.getText().toString().equals("")){
@@ -187,7 +189,12 @@ public class ResetPassword extends AppCompatActivity {
                                         dialogInterface.cancel();
                                     }
                                 });
-                                builder.show();
+                                AlertDialog alert = builder.create();
+                                alert.show();
+                                Button pbutton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+                                pbutton.setTextColor(Color.BLACK);
+                                Button nbutton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+                                nbutton.setTextColor(Color.BLACK);
                             }
                         }
 

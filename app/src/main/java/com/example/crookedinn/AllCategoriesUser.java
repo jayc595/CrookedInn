@@ -31,6 +31,7 @@ public class AllCategoriesUser extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent (AllCategoriesUser.this, Home.class);
+                intent.putExtra("Admin", "User");
                 intent.putExtra("category", "starters");
                 startActivity(intent);
             }
@@ -39,6 +40,7 @@ public class AllCategoriesUser extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent (AllCategoriesUser.this, Home.class);
+                intent.putExtra("Admin", "User");
                 intent.putExtra("category", "lunch");
                 startActivity(intent);
             }
@@ -47,6 +49,7 @@ public class AllCategoriesUser extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent (AllCategoriesUser.this, Home.class);
+                intent.putExtra("Admin", "User");
                 intent.putExtra("category", "grill");
                 startActivity(intent);
             }
@@ -55,6 +58,7 @@ public class AllCategoriesUser extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent (AllCategoriesUser.this, Home.class);
+                intent.putExtra("Admin", "User");
                 intent.putExtra("category", "specials");
                 startActivity(intent);
             }
@@ -63,7 +67,8 @@ public class AllCategoriesUser extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent (AllCategoriesUser.this, Home.class);
-                intent.putExtra("category", "Vegeterian");
+                intent.putExtra("Admin", "User");
+                intent.putExtra("category", "vegeterian");
                 startActivity(intent);
             }
         });
@@ -71,6 +76,7 @@ public class AllCategoriesUser extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent (AllCategoriesUser.this, Home.class);
+                intent.putExtra("Admin", "User");
                 intent.putExtra("category", "pasta");
                 startActivity(intent);
             }
@@ -79,6 +85,7 @@ public class AllCategoriesUser extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent (AllCategoriesUser.this, Home.class);
+                intent.putExtra("Admin", "User");
                 intent.putExtra("category", "dessert");
                 startActivity(intent);
             }
@@ -87,6 +94,7 @@ public class AllCategoriesUser extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent (AllCategoriesUser.this, Home.class);
+                intent.putExtra("Admin", "User");
                 intent.putExtra("category", "sides");
                 startActivity(intent);
             }
