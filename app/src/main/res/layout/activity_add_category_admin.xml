@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.AddCategoryAdmin">
+
+    <EditText
+        android:id="@+id/optionname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapWords"
+        android:padding="20dp"
+        android:hint="Title"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/input_design"
+        />
+
+    <EditText
+        android:id="@+id/option1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/optionname"
+        android:layout_marginTop="6dp"
+        android:inputType="textCapWords"
+        android:padding="20dp"
+        android:hint="Option 1"
+        android:layout_marginLeft="65dp"
+        android:layout_marginRight="65dp"
+        android:background="@drawable/input_design"
+        />
+
+    <EditText
+        android:id="@+id/option2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/option1"
+        android:layout_marginTop="6dp"
+        android:inputType="textCapWords"
+        android:padding="20dp"
+        android:hint="Option 2"
+        android:layout_marginLeft="65dp"
+        android:layout_marginRight="65dp"
+        android:background="@drawable/input_design"
+        />
+
+    <EditText
+        android:id="@+id/option3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/option2"
+        android:layout_marginTop="6dp"
+        android:inputType="textCapWords"
+        android:padding="20dp"
+        android:hint="Option 3"
+        android:layout_marginLeft="65dp"
+        android:layout_marginRight="65dp"
+        android:background="@drawable/input_design"
+        />
+
+    <EditText
+        android:id="@+id/option4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/option3"
+        android:layout_marginTop="6dp"
+        android:inputType="textCapWords"
+        android:padding="20dp"
+        android:hint="Option 4"
+        android:layout_marginLeft="65dp"
+        android:layout_marginRight="65dp"
+        android:background="@drawable/input_design"
+        />
+    <EditText
+        android:id="@+id/option5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/option4"
+        android:layout_marginTop="6dp"
+        android:inputType="textCapWords"
+        android:padding="20dp"
+        android:hint="Option 5"
+        android:layout_marginLeft="65dp"
+        android:layout_marginRight="65dp"
+        android:background="@drawable/input_design"
+        />
+
+    <EditText
+        android:id="@+id/option6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/option5"
+        android:layout_marginTop="6dp"
+        android:inputType="textCapWords"
+        android:padding="20dp"
+        android:hint="Option 6"
+        android:layout_marginLeft="65dp"
+        android:layout_marginRight="65dp"
+        android:background="@drawable/input_design"
+        />
+
+    <Button
+        android:id="@+id/add_new_item_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/option6"
+        android:text="Add Category"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textSize="18sp"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:background="@drawable/buttons"
+        />
+
+
+</RelativeLayout>

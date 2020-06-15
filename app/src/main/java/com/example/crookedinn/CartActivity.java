@@ -57,7 +57,7 @@ public class CartActivity extends AppCompatActivity {
 
     private double overTotalPrice = 0.0;
     private double oneTyprProductTPrice = 0.0;
-    private String TableNum = "0", overTotalPrice1 = "", lunch = "", barmenu = "", specialmenu= "";
+    private String TableNum = "0", overTotalPrice1 = "", lunch = "", barmenu = "", specialmenu = "", bar = "";
 
 
 
@@ -110,6 +110,9 @@ public class CartActivity extends AppCompatActivity {
                     }
                     else if(openclosed.getSpecialsmenu().equals("Closed")){
                         specialmenu = "Closed";
+                    }
+                    else if(openclosed.getBar().equals("Closed")){
+                        bar = "Closed";
                     }
                 }
             }
@@ -347,26 +350,33 @@ public class CartActivity extends AppCompatActivity {
             holder.txtItemPrice.setText("£" + model.getPrice());
 
             if(model.getCategory().equals("lunch") && lunch.equals("Closed")){
-                Toast.makeText(CartActivity.this, "CONTAINS lunch Item", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CartActivity.this, "Lunch menu is currently closed, please remove invalid items", Toast.LENGTH_SHORT).show();
                 rl1.setVisibility(View.INVISIBLE);
                 holder.txtItemName.setTextColor(Color.RED);
                 holder.txtItemPrice.setTextColor(Color.RED);
                 holder.txtItemQuantity.setTextColor(Color.RED);
             }
             else if(model.getCategory().equals("specials") && specialmenu.equals("Closed")){
-                Toast.makeText(CartActivity.this, "CONTAINS specials Item", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CartActivity.this, "Specials menu is currently closed, please remove invalid items", Toast.LENGTH_SHORT).show();
                 rl1.setVisibility(View.INVISIBLE);
                 holder.txtItemName.setTextColor(Color.RED);
                 holder.txtItemPrice.setTextColor(Color.RED);
                 holder.txtItemQuantity.setTextColor(Color.RED);
             }
-            else if(model.getCategory().equals("grll") || model.getCategory().equals("pasta") || model.getCategory().equals("sides") || model.getCategory().equals("dessert") || model.getCategory().equals("starters") && barmenu.equals("Closed")) {
-                Toast.makeText(CartActivity.this, "CONTAINS bar Item", Toast.LENGTH_SHORT).show();
+            else if(model.getCategory().equals("grill") || model.getCategory().equals("pasta") || model.getCategory().equals("sides") || model.getCategory().equals("dessert") || model.getCategory().equals("starters") && barmenu.equals("Closed")) {
+                Toast.makeText(CartActivity.this, "Bar is currently closed, please remove invalid items", Toast.LENGTH_SHORT).show();
                 rl1.setVisibility(View.INVISIBLE);
                 holder.txtItemName.setTextColor(Color.RED);
                 holder.txtItemPrice.setTextColor(Color.RED);
                 holder.txtItemQuantity.setTextColor(Color.RED);
             }
+//            else if(bar.equals("Closed")){
+//                Toast.makeText(CartActivity.this, "Sorry, we are currently closed", Toast.LENGTH_SHORT).show();
+//                rl1.setVisibility(View.INVISIBLE);
+//                holder.txtItemName.setTextColor(Color.RED);
+//                holder.txtItemPrice.setTextColor(Color.RED);
+//                holder.txtItemQuantity.setTextColor(Color.RED);
+//            }
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

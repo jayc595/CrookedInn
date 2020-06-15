@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.crookedinn.Admin.AddCategoryAdmin;
 import com.example.crookedinn.Admin.KitchenSettings;
 import com.example.crookedinn.Admin.SettingsAdmin;
 import com.example.crookedinn.Model.Openclosed;
@@ -141,6 +142,7 @@ public class Home extends AppCompatActivity
                     final AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
                     builder.setTitle("Please note");
                     final TextView note = new TextView(Home.this);
+                    note.setPadding(100, 50, 100, 0);
                     note.setText("The Kitchen is currently closed. However, you can still order a drink");
 
                     builder.setView(note);
@@ -161,27 +163,8 @@ public class Home extends AppCompatActivity
                     final AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
                     builder.setTitle("Please note");
                     final TextView note = new TextView(Home.this);
+                    note.setPadding(100, 50, 100, 0);
                     note.setText("We are currently closed, but you can still browse our menu");
-
-                    builder.setView(note);
-
-                    builder.setNegativeButton("Browse", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int which) {
-                            dialogInterface.cancel();
-                        }
-                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                    Button nbutton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
-                    nbutton.setTextColor(Color.BLACK);
-                }
-
-                else if (openclosed.getSpecialsmenu().equals("Closed")) {
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
-                    builder.setTitle("Please note");
-                    final TextView note = new TextView(Home.this);
-                    note.setText("Our specials aren't available until 6:00");
 
                     builder.setView(note);
 
@@ -372,6 +355,8 @@ public class Home extends AppCompatActivity
                 Intent intent = new Intent(Home.this, AllCategoriesUser.class);
                 startActivity(intent);
             } else {
+                Intent intent = new Intent(Home.this, AddCategoryAdmin.class);
+                startActivity(intent);
                 Toast.makeText(this, "You don't have permission", Toast.LENGTH_SHORT).show();
 
             }

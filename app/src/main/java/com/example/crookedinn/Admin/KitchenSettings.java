@@ -1,14 +1,19 @@
 package com.example.crookedinn.Admin;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.crookedinn.Home;
 import com.example.crookedinn.Model.Openclosed;
 import com.example.crookedinn.Prevalant.Prevalant;
 import com.example.crookedinn.R;
@@ -28,6 +33,7 @@ public class KitchenSettings extends AppCompatActivity {
     private CheckBox bar, barmenu, lunchmenu, specialmenu;
     private String bar1 = "", barmenu1 = "", lunchmenu1 = "", specialmenu1 = "";
     private Button applyChanges;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

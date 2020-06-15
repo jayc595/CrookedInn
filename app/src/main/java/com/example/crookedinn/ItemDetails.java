@@ -76,12 +76,16 @@ public class ItemDetails extends AppCompatActivity {
                                 Toast.makeText(ItemDetails.this, "Sorry we are currently Closed!", Toast.LENGTH_LONG).show();
                                 finish();
                                 }
-                            else if(openclosed.getLunchmenu().equals("Closed") && category.equals("lunch")){
+                            if(openclosed.getLunchmenu().equals("Closed") && category.equals("lunch")){
                                 Toast.makeText(ItemDetails.this, "Lunch menu is currently not available", Toast.LENGTH_LONG).show();
                                 finish();
                             }
-                            else if(openclosed.getSpecialsmenu().equals("Closed") && category.equals("specials")){
+                            if(openclosed.getSpecialsmenu().equals("Closed") && category.equals("specials")){
                                 Toast.makeText(ItemDetails.this, "Special menu is currently not available", Toast.LENGTH_LONG).show();
+                                finish();
+                            }
+                            if(openclosed.getBarmenu().equals("Closed") && category.equals("starters") || category.equals("grill") || category.equals("pasta") || category.equals("dessert") || category.equals("sides")){
+                                Toast.makeText(ItemDetails.this, "We currently aren't serving food", Toast.LENGTH_SHORT).show();
                                 finish();
                             }
 
