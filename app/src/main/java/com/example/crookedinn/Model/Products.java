@@ -1,12 +1,12 @@
 package com.example.crookedinn.Model;
 
 public class Products {
-    private String iname, price, category, description, pid, date, time, gf, df, stock;
+    private String iname, price, category, description, pid, date, time, gf, df, stock, FoodCategory, catenumber;
 
     public Products(){
 
     }
-    public Products(String iname, String price, String category, String description, String pid, String date, String time, String gf, String df, String stock) {
+    public Products(String iname, String price, String category, String description, String pid, String date, String time, String gf, String df, String stock, String FoodCategory, String catenumber) {
         this.iname = iname;
         this.price = price;
         this.category = category;
@@ -17,6 +17,8 @@ public class Products {
         this.gf = gf;
         this.df = df;
         this.stock = stock;
+        this.FoodCategory = FoodCategory;
+        this.catenumber = catenumber;
     }
 
     public String getIname() {
@@ -98,4 +100,20 @@ public class Products {
     public void setStock(String stock) {
         this.stock = stock;
     }
+
+    public String getFoodCategory() {
+        return FoodCategory;
+    }
+
+    public void setFoodCategory(String FoodCategory) {
+        this.FoodCategory = FoodCategory;
+    }
+    public String getCatenumber() {
+        return catenumber;
+    }
+
+    public void setCatenumber(String catenumber) {
+        this.catenumber = catenumber;
+    }
+
 }

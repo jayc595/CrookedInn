@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.crookedinn.Home;
 import com.example.crookedinn.Model.Openclosed;
+import com.example.crookedinn.Model.Products;
 import com.example.crookedinn.Prevalant.Prevalant;
 import com.example.crookedinn.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,7 +32,7 @@ import java.util.HashMap;
 public class KitchenSettings extends AppCompatActivity {
 
     private CheckBox bar, barmenu, lunchmenu, specialmenu;
-    private String bar1 = "", barmenu1 = "", lunchmenu1 = "", specialmenu1 = "";
+    private String bar1 = "", barmenu1 = "", lunchmenu1 = "", specialmenu1 = "", catenumber;
     private Button applyChanges;
 
 
@@ -65,8 +66,10 @@ public class KitchenSettings extends AppCompatActivity {
 
                 if(lunchmenu.isChecked()) {
                     lunchmenu1 = "Open";
+                    catenumber = "a";
                 } else {
                     lunchmenu1 = "Closed";
+                    catenumber = "z";
                 }
 
                 if(specialmenu.isChecked()) {
@@ -75,19 +78,13 @@ public class KitchenSettings extends AppCompatActivity {
                     specialmenu1 = "Closed";
                 }
 
-//                if(barmenu1.equals("Open")) {
-//                    Toast.makeText(KitchenSettings.this, "Bar menu open?", Toast.LENGTH_SHORT).show();
-//                    //add Open to the database
-//                } else {
-//                    Toast.makeText(KitchenSettings.this, "Bar menu closed?", Toast.LENGTH_SHORT).show();
-//                    // update to closed in the database
-//                }
                 applySettings();
-            }
+          }
 
 
         });
     }
+
 
     private void getSettings() {
         DatabaseReference openref = FirebaseDatabase.getInstance().getReference().child("OpenClosed");
@@ -133,8 +130,7 @@ public class KitchenSettings extends AppCompatActivity {
 
     private void applySettings() {
 //        Toast.makeText(this, "Apply Settings Proceeding...", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent (KitchenSettings.this, AdminCategory.class);
-        startActivity(intent);
+
 
         final DatabaseReference settingsRef = FirebaseDatabase.getInstance().getReference().child("OpenClosed");
 
@@ -153,8 +149,26 @@ public class KitchenSettings extends AppCompatActivity {
                 }
             }
         });
+        if(lunchmenu1.equals("Closed") || lunchmenu1.equals("Open")) {
+            DatabaseReference test = (DatabaseReference) FirebaseDatabase.getInstance().getReference().child("Products")
+                    .orderByChild("category").startAt("lunch").endAt("lunch");
+                HashMap<String, Object> updateCatenum = new HashMap<>();
+                updateCatenum.put("catenumber", catenumber);
 
-
+                test.updateChildren(updateCatenum).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Intent intent = new Intent (KitchenSettings.this, AdminCategory.class);
+                            startActivity(intent);
+                            Toast.makeText(KitchenSettings.this, "Updated Categories", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(KitchenSettings.this, "ERROR ADDING", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        }
     }
 
-}
+

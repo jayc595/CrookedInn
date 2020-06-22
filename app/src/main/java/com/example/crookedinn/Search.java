@@ -52,7 +52,7 @@ public class Search extends AppCompatActivity {
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Products");
 
-        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("iname").startAt(searchInput).endAt(searchInput), Products.class).build();
+        FirebaseRecyclerOptions<Products> options = new FirebaseRecyclerOptions.Builder<Products>().setQuery(reference.orderByChild("iname").startAt(searchInput).endAt(searchInput + "\uf8ff"), Products.class).build();
 
         FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
             @Override

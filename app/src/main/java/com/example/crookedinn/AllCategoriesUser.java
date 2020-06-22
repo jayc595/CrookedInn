@@ -1,11 +1,19 @@
 package com.example.crookedinn;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.example.crookedinn.Model.Openclosed;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AllCategoriesUser extends AppCompatActivity {
     private ImageView startersuser, lunchuser;
@@ -26,6 +34,42 @@ public class AllCategoriesUser extends AppCompatActivity {
         sidesuser = (ImageView) findViewById(R.id.sidesuser);
         dessertuser = (ImageView) findViewById(R.id.dessertuser);
         drinksuser = (ImageView) findViewById(R.id.drinks);
+
+        DatabaseReference openref = FirebaseDatabase.getInstance().getReference().child("OpenClosed");
+        openref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Openclosed openclosed = dataSnapshot.getValue(Openclosed.class);
+                if (openclosed.getLunchmenu().equals("Closed")){
+                    lunchuser.setVisibility(View.GONE);
+                } else if (openclosed.getLunchmenu().equals("Open")){
+                    lunchuser.setVisibility(View.VISIBLE);
+                } if (openclosed.getSpecialsmenu().equals("Closed")){
+                    specialsuser.setVisibility(View.GONE);
+                } else if (openclosed.getSpecialsmenu().equals("Open")){
+                    specialsuser.setVisibility(View.VISIBLE);
+                } if (openclosed.getBarmenu().equals("Closed")){
+                    startersuser.setVisibility(View.GONE);
+                    grilluser.setVisibility(View.GONE);
+                    sidesuser.setVisibility(View.GONE);
+                    pastauser.setVisibility(View.GONE);
+                    dessertuser.setVisibility(View.GONE);
+                    vegetarianuser.setVisibility(View.GONE);
+                } else if (openclosed.getBarmenu().equals("Open")){
+                    startersuser.setVisibility(View.VISIBLE);
+                    grilluser.setVisibility(View.VISIBLE);
+                    sidesuser.setVisibility(View.VISIBLE);
+                    pastauser.setVisibility(View.VISIBLE);
+                    dessertuser.setVisibility(View.VISIBLE);
+                    vegetarianuser.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         startersuser.setOnClickListener(new View.OnClickListener() {
             @Override

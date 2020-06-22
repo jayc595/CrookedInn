@@ -62,7 +62,7 @@ public class Home extends AppCompatActivity
     private String GetName, Order = "";
     private TextView toolbarName;
 
-    private String type = "";
+    private String type = "", lunchmenu, specialmenu, bar, barmenu;
 
 
     @Override
@@ -124,6 +124,8 @@ public class Home extends AppCompatActivity
         LayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(LayoutManager);
 
+        onStart();
+
     }
 
 
@@ -137,8 +139,17 @@ public class Home extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Openclosed openclosed = dataSnapshot.getValue(Openclosed.class);
+                if (openclosed.getLunchmenu().equals("Closed")) {
+                    lunchmenu = "Closed";
+                } else if (openclosed.getLunchmenu().equals("Open")) {
+                    lunchmenu = "Open";
+                } if (openclosed.getSpecialsmenu().equals("Closed")) {
+                    specialmenu = "Closed";
+                } else if (openclosed.getSpecialsmenu().equals("Open")) {
+                    specialmenu = "Open";
+                } if (openclosed.getBarmenu().equals("Closed")) {
+                    barmenu = "Closed";
 
-                if (openclosed.getBarmenu().equals("Closed")) {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
                     builder.setTitle("Please note");
                     final TextView note = new TextView(Home.this);
@@ -151,6 +162,7 @@ public class Home extends AppCompatActivity
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {
                             dialogInterface.cancel();
+
                         }
                     });
                     AlertDialog alert = builder.create();
@@ -158,8 +170,10 @@ public class Home extends AppCompatActivity
                     Button nbutton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
                     nbutton.setTextColor(Color.BLACK);
 
-
-                } else if (openclosed.getBar().equals("Closed")) {
+                } else if (openclosed.getBarmenu().equals("Open")) {
+                    barmenu = "Open";
+               }
+                 else if (openclosed.getBar().equals("Closed")) {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(Home.this);
                     builder.setTitle("Please note");
                     final TextView note = new TextView(Home.this);
@@ -198,29 +212,30 @@ public class Home extends AppCompatActivity
             @Override
             protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
                 if (model.getStock().equals("Yes") || model.getStock().equals("NA")) {
-                    holder.txtItemName.setVisibility(View.VISIBLE);
-                    holder.txtItemPrice.setVisibility(View.VISIBLE);
-                    holder.txtItemCategory.setVisibility(View.VISIBLE);
-                    holder.itemView.setVisibility(View.VISIBLE);
+                        holder.txtItemName.setVisibility(View.VISIBLE);
+                        holder.txtItemPrice.setVisibility(View.VISIBLE);
+                        holder.txtItemCategory.setVisibility(View.VISIBLE);
+                        holder.itemView.setVisibility(View.VISIBLE);
 
-                    holder.txtItemName.setText(model.getIname());
-                    holder.txtItemPrice.setText("£" + model.getPrice());
-                    holder.txtItemCategory.setText(model.getCategory());
+                        holder.txtItemName.setText(model.getIname());
+                        holder.txtItemPrice.setText("£" + model.getPrice());
+                        holder.txtItemCategory.setText(model.getCategory());
 
-
-                    holder.itemView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
                                 Intent intent = new Intent(Home.this, ItemDetails.class);
                                 intent.putExtra("pid", model.getPid());
+                                intent.putExtra("FoodCategory", model.getFoodCategory());
                                 startActivity(intent);
-                        }
-                    });
-                } else {
-                    holder.Layout_view.setVisibility(View.GONE);
+                            }
+                        });
 
                 }
-            }
+                else {
+                    holder.Layout_view.setVisibility(View.GONE);
+                }
+                    }
 
             @NonNull
             @Override
@@ -261,30 +276,110 @@ public class Home extends AppCompatActivity
                     }
                      else {
                         if (model.getStock().equals("Yes") || model.getStock().equals("NA")) {
-                            holder.txtItemName.setVisibility(View.VISIBLE);
-                            holder.txtItemPrice.setVisibility(View.VISIBLE);
-                            holder.txtItemCategory.setVisibility(View.VISIBLE);
-                            holder.itemView.setVisibility(View.VISIBLE);
+                            if (model.getCategory().equals("lunch") && lunchmenu.equals("Open")) {
+                                holder.txtItemName.setVisibility(View.VISIBLE);
+                                holder.txtItemPrice.setVisibility(View.VISIBLE);
+                                holder.txtItemCategory.setVisibility(View.VISIBLE);
+                                holder.itemView.setVisibility(View.VISIBLE);
 
-                            holder.txtItemName.setText(model.getIname());
-                            holder.txtItemPrice.setText("£" + model.getPrice());
-                            holder.txtItemCategory.setText(model.getCategory());
+                                holder.txtItemName.setText(model.getIname());
+                                holder.txtItemPrice.setText("£" + model.getPrice());
+                                holder.txtItemCategory.setText(model.getCategory());
 
-                            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
+                                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        if(lunchmenu.equals("Open")) {
+                                            Intent intent = new Intent(Home.this, ItemDetails.class);
+                                            intent.putExtra("pid", model.getPid());
+                                            intent.putExtra("FoodCategory", model.getFoodCategory());
+                                            startActivity(intent);
+                                        } else {
+                                            Toast.makeText(Home.this, "Sorry, this is no longer available", Toast.LENGTH_SHORT).show();
+                                            finish();
+                                            startActivity(getIntent());
+                                        }
+                                    }
+                                });
+                            } else if (model.getCategory().equals("lunch") && lunchmenu.equals("Closed")) {
+                                holder.Layout_view.setVisibility(View.GONE);
+                                holder.txtItemName.setVisibility(View.GONE);
+                                holder.txtItemPrice.setVisibility(View.GONE);
+                                holder.txtItemCategory.setVisibility(View.GONE);
+                                holder.itemView.setVisibility(View.GONE);
+
+                                holder.txtItemName.setText(model.getIname());
+                                holder.txtItemPrice.setText("£" + model.getPrice());
+                                holder.txtItemCategory.setText(model.getCategory());
+
+                            } else if (model.getCategory().equals("specials") && specialmenu.equals("Open")) {
+                                holder.txtItemName.setVisibility(View.VISIBLE);
+                                holder.txtItemPrice.setVisibility(View.VISIBLE);
+                                holder.txtItemCategory.setVisibility(View.VISIBLE);
+                                holder.itemView.setVisibility(View.VISIBLE);
+
+                                holder.txtItemName.setText(model.getIname());
+                                holder.txtItemPrice.setText("£" + model.getPrice());
+                                holder.txtItemCategory.setText(model.getCategory());
+
+                                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
                                         Intent intent = new Intent(Home.this, ItemDetails.class);
                                         intent.putExtra("pid", model.getPid());
+                                        intent.putExtra("FoodCategory", model.getFoodCategory());
                                         startActivity(intent);
 
-                                }
-                            });
-                        } else {
-                            holder.Layout_view.setVisibility(View.GONE);
+                                    }
+                                });
+                            } else if (model.getCategory().equals("specials") && lunchmenu.equals("Closed")) {
+                                holder.Layout_view.setVisibility(View.GONE);
+                                holder.txtItemName.setVisibility(View.GONE);
+                                holder.txtItemPrice.setVisibility(View.GONE);
+                                holder.txtItemCategory.setVisibility(View.GONE);
+                                holder.itemView.setVisibility(View.GONE);
 
+                                holder.txtItemName.setText(model.getIname());
+                                holder.txtItemPrice.setText("£" + model.getPrice());
+                                holder.txtItemCategory.setText(model.getCategory());
+
+                            } else if (model.getCategory().equals("starters") && barmenu.equals("Open")) {
+                                holder.txtItemName.setVisibility(View.VISIBLE);
+                                holder.txtItemPrice.setVisibility(View.VISIBLE);
+                                holder.txtItemCategory.setVisibility(View.VISIBLE);
+                                holder.itemView.setVisibility(View.VISIBLE);
+
+                                holder.txtItemName.setText(model.getIname());
+                                holder.txtItemPrice.setText("£" + model.getPrice());
+                                holder.txtItemCategory.setText(model.getCategory());
+
+                                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent intent = new Intent(Home.this, ItemDetails.class);
+                                        intent.putExtra("pid", model.getPid());
+                                        intent.putExtra("FoodCategory", model.getFoodCategory());
+                                        startActivity(intent);
+
+                                    }
+
+                                });
+                            }
+                            else if (model.getCategory().equals("starters") && barmenu.equals("Closed")) {
+                                holder.Layout_view.setVisibility(View.GONE);
+                                holder.txtItemName.setVisibility(View.GONE);
+                                holder.txtItemPrice.setVisibility(View.GONE);
+                                holder.txtItemCategory.setVisibility(View.GONE);
+                                holder.itemView.setVisibility(View.GONE);
+
+                                holder.txtItemName.setText(model.getIname());
+                                holder.txtItemPrice.setText("£" + model.getPrice());
+                                holder.txtItemCategory.setText(model.getCategory());
+                            }
                         }
                     }
                 }
+
 
                 @NonNull
                 @Override

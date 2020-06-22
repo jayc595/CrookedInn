@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Admin.AddCategoryAdmin"></activity>
+        <activity android:name=".AdditionalOptionsAdmin"></activity>
+        <activity android:name=".Admin.AddCategoryAdmin" />
         <activity android:name=".Admin.KitchenSettings" />
         <activity android:name=".Admin.SettingsAdmin" />
         <activity android:name=".ResetPassword" />

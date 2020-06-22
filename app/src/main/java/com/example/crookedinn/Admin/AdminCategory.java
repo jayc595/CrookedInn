@@ -77,6 +77,7 @@ public class AdminCategory extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent (AdminCategory.this, AdminAddNewItem.class);
                 intent.putExtra("category", "starters");
+                intent.putExtra("foodcategory", "none");
                 startActivity(intent);
             }
         });
@@ -86,6 +87,7 @@ public class AdminCategory extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent (AdminCategory.this, AdminAddNewItem.class);
                 intent.putExtra("category", "lunch");
+                intent.putExtra("foodcategory", "none");
                 startActivity(intent);
             }
         });
@@ -95,6 +97,7 @@ public class AdminCategory extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent (AdminCategory.this, AdminAddNewItem.class);
                 intent.putExtra("category", "grill");
+                intent.putExtra("foodcategory", "none");
                 startActivity(intent);
             }
         });
@@ -104,6 +107,7 @@ public class AdminCategory extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent (AdminCategory.this, AdminAddNewItem.class);
                 intent.putExtra("category", "specials");
+                intent.putExtra("foodcategory", "none");
                 startActivity(intent);
             }
         });
@@ -113,6 +117,7 @@ public class AdminCategory extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent (AdminCategory.this, AdminAddNewItem.class);
                 intent.putExtra("category", "vegetarian");
+                intent.putExtra("foodcategory", "none");
                 startActivity(intent);
             }
         });
@@ -122,6 +127,7 @@ public class AdminCategory extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent (AdminCategory.this, AdminAddNewItem.class);
                 intent.putExtra("category", "pasta");
+                intent.putExtra("foodcategory", "none");
                 startActivity(intent);
             }
         });
@@ -131,6 +137,7 @@ public class AdminCategory extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent (AdminCategory.this, AdminAddNewItem.class);
                 intent.putExtra("category", "sides");
+                intent.putExtra("foodcategory", "none");
                 startActivity(intent);
             }
         });
@@ -140,6 +147,7 @@ public class AdminCategory extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent (AdminCategory.this, AdminAddNewItem.class);
                 intent.putExtra("category", "dessert");
+                intent.putExtra("foodcategory", "none");
                 startActivity(intent);
             }
         });

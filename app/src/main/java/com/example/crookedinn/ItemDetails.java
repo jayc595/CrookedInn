@@ -8,11 +8,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import com.rey.material.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.crookedinn.Model.AdditionalOptions;
 import com.example.crookedinn.Model.Openclosed;
 import com.example.crookedinn.Model.Products;
 import com.example.crookedinn.Prevalant.Prevalant;
@@ -34,8 +38,11 @@ public class ItemDetails extends AppCompatActivity {
     private Button addToCartBtn;
     private ElegantNumberButton numberButton;
     private TextView productPrice, productDescription, productName, productGf, productDf, productPnull, productCnull;
-    private String productID = "", state = "Normal";
+    private String productID = "", state = "Normal", OptionalAdd = "None";
     private ImageView GFimg, DFimg, NotGFimg, NotDFimg;
+    private RelativeLayout rl1;
+    private String CategoryTitle;
+    private RadioButton Op1, Op2, Op3, Op4, Op5, Op6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +66,33 @@ public class ItemDetails extends AppCompatActivity {
         NotDFimg = (ImageView) findViewById(R.id.NotDF_image);
         NotGFimg = (ImageView) findViewById(R.id.NotGF_image);
 
+        Op1 = findViewById(R.id.option1chkbox);
+        Op2 = findViewById(R.id.option2chkbox);
+        Op3 = findViewById(R.id.option3chkbox);
+        Op4 = findViewById(R.id.option4chkbox);
+        Op5 = findViewById(R.id.option5chkbox);
+        Op6 = findViewById(R.id.option6chkbox);
+
+        CategoryTitle = getIntent().getStringExtra("FoodCategory");
+
+
+        rl1 = (RelativeLayout) findViewById(R.id.relativelayout1);
+
+        //Later add all options
+
 
         getProductDetails(productID);
 
         addToCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(Op1.isChecked()){
+                    OptionalAdd = Op1.getText().toString();
+                } else {
+                    OptionalAdd = "None";
+
+                }
+
                 final String category = productCnull.getText().toString();
                 DatabaseReference openref = FirebaseDatabase.getInstance().getReference().child("OpenClosed");
                 openref.addValueEventListener(new ValueEventListener() {
@@ -120,6 +148,52 @@ public class ItemDetails extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 //        CheckOrderState(); //undo this later
+        DatabaseReference additionalRef = FirebaseDatabase.getInstance().getReference().child("FoodCategory").child(CategoryTitle);
+        additionalRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    AdditionalOptions additionaloptions = dataSnapshot.getValue(AdditionalOptions.class);
+                        if(additionaloptions.getOption1().equals("None") || additionaloptions.getOption2().equals("None")){
+                            rl1.setVisibility(View.GONE);
+                        } else if(!additionaloptions.getOption1().equals("None") || !additionaloptions.getOption2().equals("None")){
+                            rl1.setVisibility(View.VISIBLE);
+                            Op1.setText(additionaloptions.getOption1());
+                            Op2.setText(additionaloptions.getOption2());
+
+                            if(additionaloptions.getOption3().equals("None")){
+                                Op3.setVisibility(View.GONE);
+                            } else {
+                                Op3.setText(additionaloptions.getOption3());
+                            }
+                            if (additionaloptions.getOption4().equals("None")){
+                                Op4.setVisibility(View.GONE);
+                            } else {
+                                Op4.setText(additionaloptions.getOption4());
+                            }
+                            if(additionaloptions.getOption5().equals("None")){
+                                Op5.setVisibility(View.GONE);
+                            } else {
+                                Op5.setText(additionaloptions.getOption5());
+                            }
+                            if(additionaloptions.getOption6().equals("None")){
+                                Op6.setVisibility(View.GONE);
+                            } else {
+                                Op6.setText(additionaloptions.getOption6());
+                            }
+                        }
+                     else {
+                        Toast.makeText(ItemDetails.this, "Info not found", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void addingToCartList() {
@@ -144,8 +218,7 @@ public class ItemDetails extends AppCompatActivity {
         cartMap.put("time", saveCurrentTime);
         cartMap.put("quantity", numberButton.getNumber());
         cartMap.put("discount", "");
-        cartMap.put("extra", "");
-        cartMap.put("extra2", "");
+        cartMap.put("addon", OptionalAdd);
 
         cartListRef.child("User View").child(Prevalant.currentOnlineUser.getPhone()).child("Products").child(productID).updateChildren(cartMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -179,6 +252,14 @@ public class ItemDetails extends AppCompatActivity {
                     productPrice.setText("£" + products.getPrice());
                     productDescription.setText(products.getDescription());
                     productCnull.setText(products.getCategory());
+
+
+                    CategoryTitle = products.getFoodCategory();
+                    if(CategoryTitle.equals("none")){
+                        rl1.setVisibility(View.GONE);
+                    } else {
+                        rl1.setVisibility(View.VISIBLE);
+                    }
 //                    productGf.setText("Gluten Free: " + products.getGf());
 //                    productDf.setText("Dairy Free: " + products.getDf());
 

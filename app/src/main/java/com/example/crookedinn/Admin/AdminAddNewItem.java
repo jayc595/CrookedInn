@@ -12,9 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.crookedinn.AdditionalOptionsAdmin;
 import com.example.crookedinn.R;
 import com.rey.material.widget.CheckBox;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,9 +31,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AdminAddNewItem extends AppCompatActivity {
-    private String CategoryName, Description, Iname, Price, saveCurrentDate, saveCurrentTime;
+    private String CategoryName, Description, Iname, Price, saveCurrentDate, saveCurrentTime, CategoryFood;
     private Button AddNewItemButton;
     private EditText InputItemName, InputItemDescription, InputItemPrice, Title;
+    private TextView additionalOptions;
+    private TextView optionsVerified;
     private String productRandomKey;
     private DatabaseReference ProductRef;
     private ProgressDialog loadingBar;
@@ -43,6 +47,8 @@ public class AdminAddNewItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_new_item);
 
+        CategoryFood = getIntent().getExtras().get("foodcategory").toString();
+
         CategoryName = getIntent().getExtras().get("category").toString();
         ProductRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
@@ -51,15 +57,34 @@ public class AdminAddNewItem extends AppCompatActivity {
         InputItemDescription = (EditText) findViewById(R.id.item_description);
         InputItemPrice = (EditText) findViewById(R.id.item_price);
         Title = (EditText) findViewById(R.id.categorytitle);
+        additionalOptions = (TextView) findViewById(R.id.additionaloptions);
         loadingBar = new ProgressDialog(this);
 
         chkboxDairyFree = (CheckBox) findViewById(R.id.dairyfree_chkb);
         chkboxGlutenFree = (CheckBox) findViewById(R.id.glutenfree_chkb);
         chkboxOutOfStock = (CheckBox) findViewById(R.id.outofstock_chkbx);
+        optionsVerified = (TextView) findViewById(R.id.optionsVerified);
 
         InputItemDescription.setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 
         Title.setText("Adding to '" + CategoryName + "' Category");
+
+        additionalOptions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminAddNewItem.this, AdditionalOptionsAdmin.class);
+                intent.putExtra("category", CategoryName);
+                startActivity(intent);
+            }
+        });
+
+        if(CategoryFood.equals("none")){
+            optionsVerified.setVisibility(View.GONE);
+        }
+        else {
+            optionsVerified.setVisibility(View.VISIBLE);
+            optionsVerified.setText(CategoryFood);
+        }
 
         AddNewItemButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -79,7 +104,7 @@ public class AdminAddNewItem extends AppCompatActivity {
 //            GF = "NA";
 //            DF = "NA";
             if (CategoryName.equals("Starters")){
-            CategoryNumber = "a";
+            CategoryNumber = "b";
             chkboxDairyFree.setVisibility(View.VISIBLE);
             chkboxGlutenFree.setVisibility(View.VISIBLE);
             chkboxOutOfStock.setVisibility(View.VISIBLE);
@@ -87,7 +112,7 @@ public class AdminAddNewItem extends AppCompatActivity {
             GF = "No";
             DF = "No";
         } else  if (CategoryName.equals("starters")){
-            CategoryNumber = "a";
+            CategoryNumber = "b";
             chkboxDairyFree.setVisibility(View.VISIBLE);
             chkboxGlutenFree.setVisibility(View.VISIBLE);
             chkboxOutOfStock.setVisibility(View.VISIBLE);
@@ -95,7 +120,7 @@ public class AdminAddNewItem extends AppCompatActivity {
             GF = "No";
             DF = "No";
         } else  if (CategoryName.equals("lunch")){
-            CategoryNumber = "b";
+            CategoryNumber = "a";
             chkboxDairyFree.setVisibility(View.VISIBLE);
             chkboxGlutenFree.setVisibility(View.VISIBLE);
             chkboxOutOfStock.setVisibility(View.VISIBLE);
@@ -274,9 +299,7 @@ public class AdminAddNewItem extends AppCompatActivity {
         productMap.put("gf", GF);
         productMap.put("df", DF);
         productMap.put("stock", Stock);
-
-
-
+        productMap.put("FoodCategory", CategoryFood);
 
         ProductRef.child(productRandomKey).updateChildren(productMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
