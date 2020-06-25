@@ -61,7 +61,6 @@ public class ConfirmFinalOrder extends AppCompatActivity {
 
     private void ConfirmOrder(){
         final String saveCurrentDate, saveCurrentTime;
-
         Calendar calForDate = Calendar.getInstance();
         SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
         saveCurrentDate = currentDate.format(calForDate.getTime());
@@ -89,6 +88,7 @@ public class ConfirmFinalOrder extends AppCompatActivity {
                                 Toast.makeText(ConfirmFinalOrder.this, "Your Final Order has been Placed", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(ConfirmFinalOrder.this, Home.class);
                                 intent.putExtra("category", "none");
+                                intent.putExtra("Admin", "user");
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                             }

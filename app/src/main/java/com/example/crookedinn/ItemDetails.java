@@ -88,7 +88,24 @@ public class ItemDetails extends AppCompatActivity {
             public void onClick(View view) {
                 if(Op1.isChecked()){
                     OptionalAdd = Op1.getText().toString();
-                } else {
+                }
+                else if(Op2.isChecked()){
+                    OptionalAdd = Op2.getText().toString();
+                }
+                else if(Op3.isChecked()){
+                    OptionalAdd = Op3.getText().toString();
+                }
+                else if(Op4.isChecked()){
+                    OptionalAdd = Op4.getText().toString();
+                }
+                else if(Op5.isChecked()){
+                    OptionalAdd = Op5.getText().toString();
+                }
+                else if(Op6.isChecked()){
+                    OptionalAdd = Op6.getText().toString();
+                }
+
+                else {
                     OptionalAdd = "None";
 
                 }

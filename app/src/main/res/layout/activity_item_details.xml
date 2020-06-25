@@ -209,28 +209,14 @@
         />
 
     <RadioButton
-        android:id="@+id/option4chkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Option 4"
-        android:buttonTint="@color/colorPrimaryDark"
-        android:layout_below="@+id/option3chkbox"
-        android:gravity="center_vertical"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_marginTop="3dp"
-        android:layout_centerHorizontal="true"
-        />
-
-    <RadioButton
         android:id="@+id/option2chkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Option 2"
+        android:buttonTint="@color/colorPrimaryDark"
         android:layout_below="@+id/option1chkbox"
         android:gravity="center_vertical"
         android:textSize="16sp"
-        android:buttonTint="@color/colorPrimaryDark"
         android:textStyle="bold"
         android:layout_marginTop="3dp"
         android:layout_centerHorizontal="true"
@@ -240,8 +226,22 @@
         android:id="@+id/option3chkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/option2chkbox"
         android:text="Option 3"
+        android:layout_below="@+id/option2chkbox"
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        android:buttonTint="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:layout_marginTop="3dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <RadioButton
+        android:id="@+id/option4chkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/option3chkbox"
+        android:text="Option 4"
         android:buttonTint="@color/colorPrimaryDark"
         android:gravity="center_vertical"
         android:textSize="16sp"
@@ -268,7 +268,7 @@
             android:id="@+id/option6chkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/option5chkbox"
+            android:layout_below="@+id/option6chkbox"
             android:text="Option 6"
             android:buttonTint="@color/colorPrimaryDark"
             android:gravity="center_vertical"

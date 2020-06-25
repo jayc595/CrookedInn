@@ -348,6 +348,7 @@ public class CartActivity extends AppCompatActivity {
             holder.txtItemQuantity.setText("x " + model.getQuantity());
             holder.txtItemName.setText(model.getIname());
             holder.txtItemPrice.setText("£" + model.getPrice());
+            holder.txtItemAddon.setText(model.getAddon());
 
             if(model.getCategory().equals("lunch") && lunch.equals("Closed")){
                 Toast.makeText(CartActivity.this, "Lunch menu is currently closed, please remove invalid items", Toast.LENGTH_SHORT).show();
@@ -355,6 +356,7 @@ public class CartActivity extends AppCompatActivity {
                 holder.txtItemName.setTextColor(Color.RED);
                 holder.txtItemPrice.setTextColor(Color.RED);
                 holder.txtItemQuantity.setTextColor(Color.RED);
+                holder.txtItemAddon.setTextColor(Color.RED);
             }
             else if(model.getCategory().equals("specials") && specialmenu.equals("Closed")){
                 Toast.makeText(CartActivity.this, "Specials menu is currently closed, please remove invalid items", Toast.LENGTH_SHORT).show();
@@ -362,6 +364,7 @@ public class CartActivity extends AppCompatActivity {
                 holder.txtItemName.setTextColor(Color.RED);
                 holder.txtItemPrice.setTextColor(Color.RED);
                 holder.txtItemQuantity.setTextColor(Color.RED);
+                holder.txtItemAddon.setTextColor(Color.RED);
             }
             else if(model.getCategory().equals("grill") || model.getCategory().equals("pasta") || model.getCategory().equals("sides") || model.getCategory().equals("dessert") || model.getCategory().equals("starters") && barmenu.equals("Closed")) {
                 Toast.makeText(CartActivity.this, "Bar is currently closed, please remove invalid items", Toast.LENGTH_SHORT).show();
@@ -369,6 +372,7 @@ public class CartActivity extends AppCompatActivity {
                 holder.txtItemName.setTextColor(Color.RED);
                 holder.txtItemPrice.setTextColor(Color.RED);
                 holder.txtItemQuantity.setTextColor(Color.RED);
+                holder.txtItemAddon.setTextColor(Color.RED);
             }
 //            else if(bar.equals("Closed")){
 //                Toast.makeText(CartActivity.this, "Sorry, we are currently closed", Toast.LENGTH_SHORT).show();

@@ -1,19 +1,20 @@
 package com.example.crookedinn.Model;
 
 public class Cart {
-    private String pid, iname, price, quantity, discount, category;
+    private String pid, iname, price, quantity, discount, category, addon;
 
     public Cart() {
 
     }
 
-    public Cart(String pid, String iname, String price, String quantity, String discount, String category) {
+    public Cart(String pid, String iname, String price, String quantity, String discount, String category, String addon) {
         this.pid = pid;
         this.iname = iname;
         this.price = price;
         this.quantity = quantity;
         this.discount = discount;
         this.category = category;
+        this.addon = addon;
     }
 
     public String getPid() {
@@ -62,6 +63,14 @@ public class Cart {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getAddon() {
+        return addon;
+    }
+
+    public void setAddon(String addon) {
+        this.addon = addon;
     }
 }
 

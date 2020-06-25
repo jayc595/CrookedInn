@@ -112,8 +112,11 @@ public class Products {
         return catenumber;
     }
 
-    public void setCatenumber(String catenumber) {
+    public void setCatenumber(String catenumber)
+    {
         this.catenumber = catenumber;
     }
 
 }
+
+

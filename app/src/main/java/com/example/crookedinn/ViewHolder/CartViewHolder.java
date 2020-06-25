@@ -10,7 +10,7 @@ import com.example.crookedinn.Interface.ItemClickListener;
 import com.example.crookedinn.R;
 
 public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public TextView txtItemName, txtItemPrice, txtItemQuantity, txtItemCategory;
+    public TextView txtItemName, txtItemPrice, txtItemQuantity, txtItemCategory, txtItemAddon;
     private ItemClickListener itemClickListener;
 
     public CartViewHolder(@NonNull View itemView) {
@@ -20,6 +20,7 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         txtItemPrice = itemView.findViewById(R.id.layout_price);
         txtItemQuantity = itemView.findViewById(R.id.layout_quantity);
         txtItemCategory = itemView.findViewById(R.id.prodCategoryNull);
+        txtItemAddon = itemView.findViewById(R.id.extras);
 
 
     }
